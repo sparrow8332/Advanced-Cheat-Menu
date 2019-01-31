@@ -4,6 +4,7 @@ This Mod Adds A Menu Panel With Selected Cheat Options For InGame.
 
 ## Key Features
 
+- Civ V Style Cityview _
 -Add +100 Faith
 -Add +100 Gold
 -Complete Production in Selected City
