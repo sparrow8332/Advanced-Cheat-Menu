@@ -2,7 +2,7 @@
 
 This Mod Adds A Menu Panel With Selected Cheat Options For InGame.
 
-![Key Features:]
+## Key Features
 
 -Add +100 Faith
 -Add +100 Gold
