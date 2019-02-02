@@ -14,6 +14,9 @@
 		<SupportsHotSeat>0</SupportsHotSeat>
 		<AffectsSavedGames>0</AffectsSavedGames>
     </Properties>
+	<Blocks>
+		<Mod id="c8e215b9-b317-4fae-a9b5-907570575893" title="UI Plugins Framework" />
+	</Blocks>
 	<FrontEndActions>
 		<UpdateDatabase id="Keybind_Options">
 			<File>UI/Text/Input_Config.xml</File>
@@ -31,7 +34,7 @@
 				<File>UI/Script/MiniMap_Toolbar_Handler.xml</File>
 				<File>UI/Panels/Cheat_Menu_Panel.xml</File>
 				<File>UI/Popups/Raze_City_Reminder_Popup.xml</File>
-				<!--<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>-->
+				<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
 			</Items>
 		</AddUserInterfaces>
 		<ImportFiles id="CheatPanel_Import">
@@ -39,10 +42,11 @@
 				<LoadOrder>10100</LoadOrder>
 			</Properties>
 			<File>UI/Script/MiniMap_Toolbar_Handler.lua</File>
+			<File>UI/Panels/Cheat_Menu_Panel_Functions.lua</File>
 			<File>UI/Panels/Cheat_Menu_Panel.xml</File>
 			<File>UI/Panels/Cheat_Menu_Panel.lua</File>
-			<!--<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
-			<File>UI/Panels/Cheat_Panel_World_Tracker.lua</File>-->
+			<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
+			<File>UI/Panels/Cheat_Panel_World_Tracker.lua</File>
 		</ImportFiles>
 		<UpdateText id="CheatPanel_Text">
 			<File>UI/Text/Options_Text.xml</File>
@@ -63,7 +67,8 @@
 		<File>UI/Text/Options_Text.xml</File>
 		<File>UI/Text/Localisation.sql</File>
 		<File>UI/Text/Input_Config.xml</File>
-		<!--<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
-		<File>UI/Panels/Cheat_Panel_World_Tracker.lua</File>-->
+		<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
+		<File>UI/Panels/Cheat_Panel_World_Tracker.lua</File>
+		<File>UI/Panels/Cheat_Menu_Panel_Functions.lua</File>
     </Files>
 </Mod>
