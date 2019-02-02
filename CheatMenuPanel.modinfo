@@ -4,10 +4,10 @@
 <!-- Author: Sparrow -->
 <!-- DateCreated: 01/24/2019 2:27:04 PM -->
 
-<Mod id="f1e02dd3-6a94-47c4-a2d7-1d5219d8a40e" version="6.0">
+<Mod id="f1e02dd3-6a94-47c4-a2d7-1d5219d8a40e" version="1.0">
 	<Properties>
 		<Name>[COLOR_LIGHTBLUE]Advanced Cheat Menu[ENDCOLOR]</Name>
-		<DeSCRIPTion>Adds A Menu With Selected Cheat Options For InGame.[NEWLINE][NEWLINE][NEWLINE]Add +100 [ICON_Faith][NEWLINE]Add +100 [ICON_Gold][NEWLINE]Complete Production in Selected City[NEWLINE]Complete Current Reaserching Civic[NEWLINE]Complete Current Reaserching Tech[NEWLINE]Add +5 Envoy[NEWLINE]Add +10 Era Points[NEWLINE]Add +1 Governor Title Point[NEWLINE]Restore Selected Unit Movement + Attack[NEWLINE]Restore Selected Unit Health[NEWLINE]Give +1 Promotion to Selected Unit[NEWLINE]Add +5  Movement to Selected Unit[NEWLINE]Duplicate Selected Unit (NOT for Great Persons and Religious Units)[NEWLINE]Add +1 Population to Selected City[NEWLINE]Add FULL Loyalty to Selected City [NEWLINE]Complete All Tech Research[NEWLINE]Complete All Civic Research[NEWLINE]Raze Selected City[NEWLINE]Toggle Map Observer</DeSCRIPTion>
+		<Description>Adds A Menu With Selected Cheat Options For InGame.[NEWLINE][NEWLINE][NEWLINE]Add +100 [ICON_Faith][NEWLINE]Add +100 [ICON_Gold][NEWLINE]Complete Production in Selected City[NEWLINE]Complete Current Reaserching Civic[NEWLINE]Complete Current Reaserching Tech[NEWLINE]Add +5 Envoy[NEWLINE]Add +10 Era Points[NEWLINE]Add +1 Governor Title Point[NEWLINE]Restore Selected Unit Movement + Attack[NEWLINE]Restore Selected Unit Health[NEWLINE]Give +1 Promotion to Selected Unit[NEWLINE]Add +5  Movement to Selected Unit[NEWLINE]Duplicate Selected Unit (NOT for Great Persons and Religious Units)[NEWLINE]Add +1 Population to Selected City[NEWLINE]Add FULL Loyalty to Selected City [NEWLINE]Complete All Tech Research[NEWLINE]Complete All Civic Research[NEWLINE]Raze Selected City[NEWLINE]Toggle Map Observer</Description>
 		<Teaser>Adds A Menu With Selected Cheat Options For InGame.</Teaser>
 		<Authors>Sparrow</Authors>
 		<SupportsMultiplayer>0</SupportsMultiplayer>

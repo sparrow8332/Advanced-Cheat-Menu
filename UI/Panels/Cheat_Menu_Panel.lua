@@ -79,10 +79,10 @@ local function InitializeControls()
 end
 function Initialize()
 		Events.InputActionTriggered.Add( OnInputActionTriggered );
-		LuaEvents.EndGameMenu_Shown.Add( OnMenuButtonToggle );
-		LuaEvents.DiplomacyActionView_HideIngameUI.Add( OnMenuButtonToggle );
-		LuaEvents.WonderRevealPopup_Shown.Add( OnMenuButtonToggle );
-		LuaEvents.NaturalWonderPopup_Shown.Add( OnMenuButtonToggle );
+		LuaEvents.EndGameMenu_Shown.Add( Hide );
+		LuaEvents.DiplomacyActionView_HideIngameUI.Add( Hide );
+		LuaEvents.WonderRevealPopup_Shown.Add( Hide );
+		LuaEvents.NaturalWonderPopup_Shown.Add( Hide );
 		LuaEvents.MinimapBar_RegisterAdditions.Add(OnRegisterMinimapBarAdditions);
 		LuaEvents.MinimapBar_CustomButtonClicked.Add(OnMinimapBarCustomButtonClicked);
 		OnRegisterMinimapBarAdditions();
