@@ -5,10 +5,6 @@ INSERT OR REPLACE INTO LocalizedText
 		(Tag, 								Language,	Text)
 VALUES
 -- English US ------------------------------------------------------------------------------------------------------------
-		("LOC_CHEAT_MENU_ABOUT",  					"en_US",		"Cheat Panel By [Sparrow]"),
-		("LOC_CHEAT_EXPAND_MAX",  					"en_US",		"Hide Advanced Panel"),
-		("LOC_CHEAT_COLLAPSE_MAX",  				"en_US",		"Show Advanced Panel"),
-		("LOC_CHEAT_MENU_HEADER",  					"en_US",		"CHEAT PANEL"),
 		("LOC_CHEAT_TOGGLE_MENU",  					"en_US",		"Toggle Cheat Panel"),
 		("LOC_CHEAT_ICON",  						"en_US",		"Cheat Menu By Sparrow"),
 		("LOC_CHEAT_MENU_GOVPOINTS",  				"en_US",		"Adds +1 Governor Title Point"),
