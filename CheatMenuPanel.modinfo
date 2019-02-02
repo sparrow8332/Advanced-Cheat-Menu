@@ -4,7 +4,7 @@
 <!-- Author: Sparrow -->
 <!-- DateCreated: 01/24/2019 2:27:04 PM -->
 
-<Mod id="f1e02dd3-6a94-47c4-a2d7-1d5219d8a40e" version="6.0">
+<Mod id="f1e02dd3-6a94-47c4-a2d7-1d5219d8a40e" version="1.0">
 	<Properties>
 		<Name>[COLOR_LIGHTBLUE]Advanced Cheat Menu[ENDCOLOR]</Name>
 		<Description>Adds A Menu With Selected Cheat Options For InGame.[NEWLINE][NEWLINE][NEWLINE]Add +100 [ICON_Faith][NEWLINE]Add +100 [ICON_Gold][NEWLINE]Complete Production in Selected City[NEWLINE]Complete Current Reaserching Civic[NEWLINE]Complete Current Reaserching Tech[NEWLINE]Add +5 Envoy[NEWLINE]Add +10 Era Points[NEWLINE]Add +1 Governor Title Point[NEWLINE]Restore Selected Unit Movement + Attack[NEWLINE]Restore Selected Unit Health[NEWLINE]Give +1 Promotion to Selected Unit[NEWLINE]Add +5  Movement to Selected Unit[NEWLINE]Duplicate Selected Unit (NOT for Great Persons and Religious Units)[NEWLINE]Add +1 Population to Selected City[NEWLINE]Add FULL Loyalty to Selected City [NEWLINE]Complete All Tech Research[NEWLINE]Complete All Civic Research[NEWLINE]Raze Selected City[NEWLINE]Toggle Map Observer</Description>
@@ -14,47 +14,61 @@
 		<SupportsHotSeat>0</SupportsHotSeat>
 		<AffectsSavedGames>0</AffectsSavedGames>
     </Properties>
+	<Blocks>
+		<Mod id="c8e215b9-b317-4fae-a9b5-907570575893" title="UI Plugins Framework" />
+	</Blocks>
 	<FrontEndActions>
 		<UpdateDatabase id="Keybind_Options">
-			<File>UI/InputConfig.xml</File>
+			<File>UI/Text/Input_Config.xml</File>
 		</UpdateDatabase>
 		<UpdateText id="CheatPanel_Text">
 			<File>UI/Text/Options_Text.xml</File>
 		</UpdateText>
 	</FrontEndActions>
   	<Components>
-		<UserInterface id="CheatPanel_UI">
+		<AddUserInterfaces id="CheatPanel_UI">
 			<Properties>
 				<Context>InGame</Context>
 			</Properties>
 			<Items>
-				<File>UI/Panels/CheatMenuPanel.xml</File>
-				<File>UI/Popups/RazeCityReminderPopup.xml</File>
+				<File>UI/Script/MiniMap_Toolbar_Handler.xml</File>
+				<File>UI/Panels/Cheat_Menu_Panel.xml</File>
+				<File>UI/Popups/Raze_City_Reminder_Popup.xml</File>
+				<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
 			</Items>
-		</UserInterface>
+		</AddUserInterfaces>
 		<ImportFiles id="CheatPanel_Import">
-			<File>UI/Panels/CheatMenuPanel.xml</File>
-			<File>UI/Panels/CheatMenuPanel.lua</File>
+			<Properties>
+				<LoadOrder>10100</LoadOrder>
+			</Properties>
+			<File>UI/Script/MiniMap_Toolbar_Handler.lua</File>
+			<File>UI/Panels/Cheat_Menu_Panel_Functions.lua</File>
+			<File>UI/Panels/Cheat_Menu_Panel.xml</File>
+			<File>UI/Panels/Cheat_Menu_Panel.lua</File>
+			<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
+			<File>UI/Panels/Cheat_Panel_World_Tracker.lua</File>
 		</ImportFiles>
 		<UpdateText id="CheatPanel_Text">
-			<Properties>
-				<Context>InGame</Context>
-			</Properties>
 			<File>UI/Text/Options_Text.xml</File>
 			<File>UI/Text/Localisation.sql</File>
 		</UpdateText>
 		<AddGameplayScripts id="CheatPanel_Scripts">
-			<File>UI/Script/CheatMenuPanelScript.lua</File>
+			<File>UI/Script/Cheat_Menu_Panel_Script.lua</File>
 		</AddGameplayScripts>
 	</Components>
     <Files>
-		<File>UI/Panels/CheatMenuPanel.xml</File>
-		<File>UI/Panels/CheatMenuPanel.lua</File>
-		<File>UI/Script/CheatMenuPanelScript.lua</File>
-		<File>UI/Popups/RazeCityReminderPopup.lua</File>
-		<File>UI/Popups/RazeCityReminderPopup.xml</File>
+		<File>UI/Script/MiniMap_Toolbar_Handler.lua</File>
+		<File>UI/Script/MiniMap_Toolbar_Handler.xml</File>
+		<File>UI/Panels/Cheat_Menu_Panel.xml</File>
+		<File>UI/Panels/Cheat_Menu_Panel.lua</File>
+		<File>UI/Script/Cheat_Menu_Panel_Script.lua</File>
+		<File>UI/POPUPS/Raze_City_Reminder_Popup.lua</File>
+		<File>UI/Popups/Raze_City_Reminder_Popup.xml</File>
 		<File>UI/Text/Options_Text.xml</File>
-		<File>UI/InputConfig.xml</File>
 		<File>UI/Text/Localisation.sql</File>
+		<File>UI/Text/Input_Config.xml</File>
+		<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
+		<File>UI/Panels/Cheat_Panel_World_Tracker.lua</File>
+		<File>UI/Panels/Cheat_Menu_Panel_Functions.lua</File>
     </Files>
 </Mod>

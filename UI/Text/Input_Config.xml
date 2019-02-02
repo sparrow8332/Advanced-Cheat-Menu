@@ -26,26 +26,29 @@
 		<Row ActionId="ToggleCompleteAllResearch" Name="LOC_OPTIONS_ALL_TECH" Description="LOC_OPTIONS_ALL_TECH" CategoryId="CHEATMENU" ContextId="World" />
 		<Row ActionId="ToggleCompleteAllCivic" Name="LOC_OPTIONS_ALL_CIVIC" Description="LOC_OPTIONS_ALL_CIVIC" CategoryId="CHEATMENU" ContextId="World" />	
 		<Row ActionId="ToggleGovernorpoints" Name="LOC_OPTIONS_GOVPOINTS" Description="LOC_OPTIONS_GOVPOINTS" CategoryId="CHEATMENU" ContextId="World" />		
+		<Row ActionId="ToggleGoldMore" Name="LOC_OPTIONS_GOLDMORE" Description="LOC_OPTIONS_GOLDMORE" CategoryId="CHEATMENU" ContextId="World" />		
+
 	</InputActions>
 	
 	<InputActionDefaultGestures>
-		<Row ActionId="ToggleMenu" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_M"/>	
-		<Row ActionId="ToggleGold" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F1"/>
-		<Row ActionId="ToggleFaith" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F2"/>
-		<Row ActionId="ToggleCProduction" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F3"/>
-		<Row ActionId="ToggleCCivic" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F4"/>
-		<Row ActionId="ToggleCResearch" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F5"/>
-		<Row ActionId="ToggleEnvoy" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F6"/>
-		<Row ActionId="ToggleUnitMovementChange" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F7"/>
-		<Row ActionId="ToggleUnitHealChange" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F8"/>
-		<Row ActionId="ToggleUnitPromote" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F9"/>
-		<Row ActionId="ToggleDuplicate" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F10"/>
-		<Row ActionId="ToggleChangePopulation" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F11"/>
-		<Row ActionId="ToggleChangeCityLoyalty" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_F12"/>
-		<Row ActionId="ToggleCompleteAllResearch" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_T"/>
-		<Row ActionId="ToggleCompleteAllCivic" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_C"/>
-		<Row ActionId="ToggleGovernorpoints" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_G"/>	
-		<Row ActionId="ToggleEra" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_E"/>
-		<Row ActionId="ToggleObs" Index="0" GestureType="KBMouse" GestureData="LOC_OPTIONS_KEY_O"/>
+		<Row ActionId="ToggleMenu" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleGoldMore" Index="0" GestureType="KBMouse" GestureData="NONE"/>		
+		<Row ActionId="ToggleGold" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleFaith" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleCProduction" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleCCivic" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleCResearch" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleEnvoy" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleUnitMovementChange" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleUnitHealChange" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleUnitPromote" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleDuplicate" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleChangePopulation" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleChangeCityLoyalty" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleCompleteAllResearch" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleCompleteAllCivic" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleGovernorpoints" Index="0" GestureType="KBMouse" GestureData="NONE"/>	
+		<Row ActionId="ToggleEra" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleObs" Index="0" GestureType="KBMouse" GestureData="NONE"/>
 	</InputActionDefaultGestures>
 </GameInfo>

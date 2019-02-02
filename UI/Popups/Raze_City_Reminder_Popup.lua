@@ -40,6 +40,7 @@ function OnClose()
   UIManager:DequeuePopup( ContextPtr );
   ContextPtr:SetHide(true);
 end
+
 function ShowRazeCityReminderPopup(player:number)
 	local localPlayerID = Game.GetLocalPlayer();
 	local localPlayer = Players[localPlayerID];
@@ -63,18 +64,11 @@ function ShowRazeCityReminderPopup(player:number)
 	local eOriginalOwner = g_pSelectedCity:GetOriginalOwner();
 	local originalOwnerPlayer = Players[eOriginalOwner];
 	local eOwnerBeforeOccupation = g_pSelectedCity:GetOwnerBeforeOccupation();
-	local eConqueredFrom = g_pSelectedCity:GetJustConqueredFrom();
 	local bWipedOut = (originalOwnerPlayer:GetCities():GetCount() < 1);
 	local eLastTransferType = g_pSelectedCity:GetLastTransferType();
 
-	if (eOriginalOwner ~= eOwnerBeforeOccupation and localPlayer:GetDiplomacy():CanLiberateCityTo(eOriginalOwner) and eOriginalOwner ~= eConqueredFrom) then
-		Controls.Button1:LocalizeAndSetText("LOC_RAZE_CITY_LIBERATE_FOUNDER_BUTTON_LABEL", PlayerConfigurations[eOriginalOwner]:GetCivilizationShortDescription());
-		Controls.Button1:LocalizeAndSetToolTip("LOC_DESTROY_CITY_LIBERATE_EXPLANATION");
-		Controls.Button1:SetHide(false);
-	else
-		Controls.Button1:SetHide(true);
-	end
-	if (localPlayer:GetDiplomacy():CanLiberateCityTo(eOwnerBeforeOccupation) and eOwnerBeforeOccupation ~= eConqueredFrom) then
+
+	if (localPlayer:GetDiplomacy():CanLiberateCityTo(eOwnerBeforeOccupation)) then
 		Controls.Button2:LocalizeAndSetText("LOC_RAZE_CITY_LIBERATE_FOUNDER_BUTTON_LABEL", PlayerConfigurations[eOwnerBeforeOccupation]:GetCivilizationShortDescription());
 		Controls.Button2:LocalizeAndSetToolTip("LOC_DESTROY_CITY_LIBERATE_EXPLANATION");
 		Controls.Button2:SetHide(false);
@@ -90,17 +84,13 @@ function ShowRazeCityReminderPopup(player:number)
 		Controls.Button3:LocalizeAndSetToolTip("LOC_KEEP_CITY_EXPLANATION");
 	end
 	Controls.Button4:LocalizeAndSetText("LOC_RAZE_CITY_RAZE_BUTTON_LABEL");
-	if (g_pSelectedCity:CanRaze()) then
-		if (bWipedOut ~= true) then
-		local iWarmongerPoints = localPlayer:GetDiplomacy():ComputeCityWarmongerPoints(g_pSelectedCity, eConqueredFrom, true);
-			Controls.Button4:LocalizeAndSetToolTip("LOC_RAZE_CITY_EXPLANATION");
-		else
-			Controls.Button4:LocalizeAndSetToolTip("LOC_RAZE_CITY_EXPLANATION");
-		end
-		Controls.Button4:SetDisabled(false);
-	else
+	
+	if g_pSelectedCity:IsCapital() then
 		Controls.Button4:LocalizeAndSetToolTip("LOC_RAZE_CITY_RAZE_DISABLED_EXPLANATION");
 		Controls.Button4:SetDisabled(true);
+	else
+		Controls.Button4:LocalizeAndSetToolTip("LOC_RAZE_CITY_EXPLANATION");
+		Controls.Button4:SetDisabled(false);
 	end
 	Controls.PopupStack:CalculateSize();
 	Controls.PopupStack:ReprocessAnchoring();

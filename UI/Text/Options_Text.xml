@@ -6,10 +6,13 @@
 <GameData>
 	<LocalizedText>	
 		<Row Tag="LOC_OPTIONS_FAITH" Language="en_US">
-			<Text>Add +100 Faith</Text>
+			<Text>Add +1000 Faith</Text>
 		</Row>
 		<Row Tag="LOC_OPTIONS_GOLD" Language="en_US">
-			<Text>Add +100 Gold</Text>
+			<Text>Add +1000 Gold</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_GOLDMORE" Language="en_US">
+			<Text>Add +100,000 Gold</Text>
 		</Row>
 		<Row Tag="LOC_OPTIONS_PRODUCTION" Language="en_US">
 			<Text>Complete Production</Text>
