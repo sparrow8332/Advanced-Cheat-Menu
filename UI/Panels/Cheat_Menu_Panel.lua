@@ -1,5 +1,6 @@
 -- // ----------------------------------------------------------------------------------------------
--- // Event Handlers
+-- // Author: Sparrow
+-- // DateCreated: 01/24/2019 2:27:04 PM
 -- // ----------------------------------------------------------------------------------------------
 include("Civ6Common");
 include("InstanceManager");
@@ -10,70 +11,76 @@ include("AnimSidePanelSupport");
 -- // ----------------------------------------------------------------------------------------------
 -- // Variables
 -- // ----------------------------------------------------------------------------------------------
-local m_CheatPanelState:number			= 0;
-local playerID = Game.GetLocalPlayer()
-local pPlayer = Players[playerID]
+local m_CheatMenuState:number	= 0;
+local playerID 					= Game.GetLocalPlayer();
+local pPlayer 					= Players[playerID];
+local MINIMAP_BUTTON_ID			= "CheatMenuButton";
+local pTreasury 				= pPlayer:GetTreasury();
+local pReligion 				= pPlayer:GetReligion();
+local pEnvoy 					= pPlayer:GetInfluence();
+local pVis 						= PlayersVisibility[playerID];
+local pNewGP 					= 1;
+local pNewEnvoy 				= 5;
+local pNewReligion 				= 1000;
 
 -- // ----------------------------------------------------------------------------------------------
 -- // Functions
 -- // ----------------------------------------------------------------------------------------------
-function AttachPanelToOptionsStack()
-	local CheatMenuButton:table = ContextPtr:LookUpControl("/InGame/MinimapPanel/OptionsStack");
-	if (CheatMenuButton ~= nil) then
-		Controls.CheatButtonMenu:ChangeParent(CheatMenuButton);
-		CheatMenuButton:CalculateSize();
-		CheatMenuButton:ReprocessAnchoring();
-	end
+function OnRegisterMinimapBarAdditions()
+  local buttonInfo = {
+    Icon = "ICON_VICTORY_DEFAULT",
+    Tooltip = "LOC_CHEAT_TOGGLE_MENU";
+    Id = MINIMAP_BUTTON_ID;
+  };
+  LuaEvents.MinimapBar_AddButton(buttonInfo);
 end
-function OnLoadGameViewStateDone()
-	AttachPanelToOptionsStack();
+
+function OnMinimapBarCustomButtonClicked(id:string)
+	if id == MINIMAP_BUTTON_ID then
+		OnMenuButtonToggle();
+	end
 end
 
 -- // ----------------------------------------------------------------------------------------------
--- // Event Handlers
+-- // MENU BUTTON FUNCTIONS
 -- // ----------------------------------------------------------------------------------------------
 function ChangeEraScore()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]
 	if pPlayer:IsHuman() then
         LuaEvents.ChangePlayerScoreEra(playerID)
     end
 	Refresh();
 end
 function ChangeGold()
-	local pTreasury = pPlayer:GetTreasury()	
 	local pNewGold = 1000
 	if pPlayer:IsHuman() then
         LuaEvents.ChangePlayerGold(playerID, pNewGold)
     end
 end
+function ChangeGoldMore()
+	local pNewGold = 100000;
+	if pPlayer:IsHuman() then
+        LuaEvents.ChangePlayerGold(playerID, pNewGold)
+    end
+end
 function CompleteProduction()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]	
 	if pPlayer:IsHuman() then
 		LuaEvents.CompletePlayerProduction(playerID)
 	end
 end
 function CompleteAllResearch()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]
-	local pTechs = pPlayer:GetTechs()
+ 	local pTechs = pPlayer:GetTechs()
 	if pPlayer:IsHuman() then		
 		LuaEvents.CompleteAllPlayerResearch(playerID)	
 	end		
 end
 function CompleteAllCivic()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]
-	local pTechs = pPlayer:GetCulture()
+ 	local pTechs = pPlayer:GetCulture()
 	if pPlayer:IsHuman() then		
 		LuaEvents.CompleteAllPlayerCivic(playerID)	
 	end		
 end
 function CompleteResearch()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]
-	local pTechs = pPlayer:GetTechs()
+ 	local pTechs = pPlayer:GetTechs()
 	local pRTech = pTechs:GetResearchingTech()	
 	if pRTech >= 0 then
 		local pCost = pTechs:GetResearchCost(pRTech)	
@@ -85,9 +92,7 @@ function CompleteResearch()
 	end
 end
 function CompleteCivic()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]
-	local pCivics = pPlayer:GetCulture()
+ 	local pCivics = pPlayer:GetCulture()
 	local pRCivic = pCivics:GetProgressingCivic()
 	if pRCivic >= 0 then		
 		local pCost = pCivics:GetCultureCost(pRCivic)	
@@ -99,119 +104,91 @@ function CompleteCivic()
 	end	
 end
 function ChangeFaith()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]
-	local pReligion = pPlayer:GetReligion()	
-	local pNewReligion = 1000
 	if pPlayer:IsHuman() then
         LuaEvents.ChangePlayerFaith(playerID, pNewReligion)
     end
 end
 function ChangePopulation()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]
-	if pPlayer:IsHuman() then		
+ 	if pPlayer:IsHuman() then		
 		LuaEvents.ChangePlayerPopulation(playerID)
 	end
 end
 function ChangeCityLoyalty()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]
-	if pPlayer:IsHuman() then		
+ 	if pPlayer:IsHuman() then		
 		LuaEvents.ChangePlayerLoyalty(playerID)	
 	end
 end
 function DestroyCity()
-	local playerID = Game.GetLocalPlayer();
-	local pPlayer = Players[playerID];
-	local pCity  = UI.GetHeadSelectedCity();
-	local pCityName:string = Locale.Lookup(pCity:GetName());
-	local pCityPop:string = Locale.Lookup(pCity:GetPopulation());
+	local pCity = UI.GetHeadSelectedCity();
 	if pPlayer:IsHuman(pCity == nil) then
+		local pCityName:string = Locale.Lookup(pCity:GetName());
+		local pCityPop:string = Locale.Lookup(pCity:GetPopulation());
 		LuaEvents.ShowRazeCityReminderPopup(playerID);
 	end
 end
 function UnitPromote()
-	local playerID = Game.GetLocalPlayer();
-    local pPlayer = Players[playerID];
-    local pUnit = UI.GetHeadSelectedUnit();
-    local unitID = pUnit:GetID();
-    if pPlayer:IsHuman() then
+	local pUnit = UI.GetHeadSelectedUnit();
+    if pUnit ~= nil and pPlayer:IsHuman() then
+		local unitID = pUnit:GetID();
         LuaEvents.ChangePromotion(playerID, unitID)
-    end
-	UI:DeselectUnitID(unitID);
-	UI:SelectUnitID(unitID);
+		UI:DeselectUnitID(unitID);
+		UI:SelectUnitID(unitID);
+	end
 end
 function UnitMovementChange()
-    local playerID = Game.GetLocalPlayer();
-    local pPlayer = Players[playerID];
-    local pUnit = UI.GetHeadSelectedUnit();
-    local unitID = pUnit:GetID();
-    if pPlayer:IsHuman() then
+	local pUnit = UI.GetHeadSelectedUnit();
+    if pUnit ~= nil and pPlayer:IsHuman() then
+		local unitID = pUnit:GetID();
         LuaEvents.ChangeUnitMovement(playerID, unitID)
-    end
-	UI:DeselectUnitID(unitID);
-	UI:SelectUnitID(unitID);
+		UI:DeselectUnitID(unitID);
+		UI:SelectUnitID(unitID);
+	end
 end
 function UnitAddMovement()
-    local playerID = Game.GetLocalPlayer();
-    local pPlayer = Players[playerID];
-    local pUnit = UI.GetHeadSelectedUnit();
-    local unitID = pUnit:GetID();
-    if pPlayer:IsHuman() then
+	local pUnit = UI.GetHeadSelectedUnit();
+    if pUnit ~= nil and pPlayer:IsHuman() then
+		local unitID = pUnit:GetID();
         LuaEvents.AddUnitMovement(playerID, unitID)
+		UI:DeselectUnitID(unitID);
+		UI:SelectUnitID(unitID);
     end
-	UI:DeselectUnitID(unitID);
-	UI:SelectUnitID(unitID);
 end
 function OnDuplicate()
-	local playerID = Game.GetLocalPlayer();
-    local pPlayer = Players[playerID];
-    local pUnit = UI.GetHeadSelectedUnit();
-    local unitID = pUnit:GetID();
-	local unitType:string = GameInfo.Units[pUnit:GetUnitType()].UnitType;
-	if pPlayer:IsHuman() then
+	local pUnit = UI.GetHeadSelectedUnit();
+	if pUnit ~= nil and pPlayer:IsHuman() then
+		local unitID = pUnit:GetID();
+		local unitType:string = GameInfo.Units[pUnit:GetUnitType()].UnitType;
 		LuaEvents.DuplicateUnit(playerID, unitID, unitType)
-    end
+    else end
 end
 function UnitHealChange()
-    local playerID = Game.GetLocalPlayer()
-    local pPlayer = Players[playerID]
-    local pUnit = UI.GetHeadSelectedUnit();
-    local unitID = pUnit:GetID()
-    if pPlayer:IsHuman() then
+	local pUnit = UI.GetHeadSelectedUnit();
+    if pUnit ~= nil and pPlayer:IsHuman() then
+		local unitID = pUnit:GetID();
         LuaEvents.ChangeUnitHealth(playerID, unitID)
-    end
-	UI:DeselectUnitID(unitID);
-	UI:SelectUnitID(unitID);
+    	UI:DeselectUnitID(unitID);
+		UI:SelectUnitID(unitID);
+	end
 end
 function ChangeEnvoy()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]
-	local pEnvoy = pPlayer:GetInfluence()
-	local pNewEnvoy = 5
 	if pPlayer:IsHuman() then
         LuaEvents.ChangePlayerEnvoy(playerID, pNewEnvoy)
     else end
 end
 function ChangeGovPoints()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]
-	local pNewGP = 1
 	if pPlayer:IsHuman() then
         LuaEvents.ChangePlayerGpoints(playerID, pNewGP)
     end
 end
 function RevealAll()
-	local playerID = Game.GetLocalPlayer()
-	local pPlayer = Players[playerID]
-	local pVis = PlayersVisibility[playerID]
 	if pPlayer:IsHuman() then		
 		LuaEvents.ChangeFOW(playerID)	
 	end		
 end
---******************************************************************************
 
+-- // ----------------------------------------------------------------------------------------------
+-- // REFRESH
+-- // ----------------------------------------------------------------------------------------------
 function Refresh()
 	if pPlayer:IsHuman() then
 		local UPContextPtr :table = ContextPtr:LookUpControl("/InGame/ActionPanel");
@@ -221,18 +198,17 @@ function Refresh()
 	end
 	ContextPtr:RequestRefresh(); 
 end
-local function OnRefresh()
-	ContextPtr:ClearRequestRefresh();   
-	Refresh(playerID);
-end
---******************************************************************************
+
+-- // ----------------------------------------------------------------------------------------------
+-- // CHEAT MENU CONTROL
+-- // ----------------------------------------------------------------------------------------------
 local function Hide()
 	UI.PlaySound("Tech_Tray_Slide_Closed");
 	if not Controls.SpawnDlgContainer:IsHidden() then
 		Controls.SpawnDlg_Anim:Reverse();	
 		Controls.SpawnDlgContainer:SetHide( true );
 	end
-	m_CheatPanelState = 0;
+	m_CheatMenuState = 0;
 end
 local function Show()
 	UI.PlaySound("Tech_Tray_Slide_Open");
@@ -241,19 +217,25 @@ local function Show()
 		Controls.SpawnDlg_Anim:Play();
 		Controls.SpawnDlgContainer:SetHide( false );
 	end
-	m_CheatPanelState = 1;
+	m_CheatMenuState = 1;
 end
 function OnMenuButtonToggle()
-    if(m_CheatPanelState == 0) then
+    if(m_CheatMenuState == 0) then
 		Show();	
 	else
 		Hide();
 	end	
 end
---******************************************************************************
+
+-- // ----------------------------------------------------------------------------------------------
+-- // HOTKEYS
+-- // ----------------------------------------------------------------------------------------------
 function OnInputActionTriggered( actionId )
 	if ( actionId == Input.GetActionId("ToggleGold") ) then
 		ChangeGold();
+	end
+	if ( actionId == Input.GetActionId("ToggleGoldMore") ) then
+		ChangeGoldMore()
 	end
 	if ( actionId == Input.GetActionId("ToggleFaith") ) then
 		ChangeFaith();
@@ -329,8 +311,6 @@ local function InitializeControls()
 		Controls.CheatButtonHeal:RegisterCallback(Mouse.eLClick, UnitHealChange);
 		Controls.CheatButtonEnvoy:RegisterCallback(Mouse.eLClick, ChangeEnvoy);
 		Controls.CheatButtonObs:RegisterCallback(Mouse.eLClick, RevealAll);		
-		Controls.CheatButtonMenu:RegisterCallback( Mouse.eLClick, OnMenuButtonToggle );
-		Controls.CheatButtonMenu:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over"); end);
 		Controls.CheatButtonEra:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 		Controls.CheatButtonGold:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 		Controls.CheatButtonProduction:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
@@ -355,16 +335,14 @@ end
 
 function Initialize()
 
-		ContextPtr:SetInputHandler( OnInputHandler, true );
-		ContextPtr:SetRefreshHandler( OnRefresh );
-		Events.LoadGameViewStateDone.Add(OnLoadGameViewStateDone);
-		LuaEvents.EndGameMenu_Shown.Add( Hide );
-		LuaEvents.DiplomacyActionView_HideIngameUI.Add( Hide );
-		LuaEvents.WonderRevealPopup_Shown.Add( Hide );
-		LuaEvents.NaturalWonderPopup_Shown.Add( Hide );
 		Events.InputActionTriggered.Add( OnInputActionTriggered );
-	
-	InitializeControls();
-
+		LuaEvents.EndGameMenu_Shown.Add( OnMenuButtonToggle );
+		LuaEvents.DiplomacyActionView_HideIngameUI.Add( OnMenuButtonToggle );
+		LuaEvents.WonderRevealPopup_Shown.Add( OnMenuButtonToggle );
+		LuaEvents.NaturalWonderPopup_Shown.Add( OnMenuButtonToggle );
+		LuaEvents.MinimapBar_RegisterAdditions.Add(OnRegisterMinimapBarAdditions);
+		LuaEvents.MinimapBar_CustomButtonClicked.Add(OnMinimapBarCustomButtonClicked);
+		OnRegisterMinimapBarAdditions();
+		InitializeControls();
 end
 Initialize();

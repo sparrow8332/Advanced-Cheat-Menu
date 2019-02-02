@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Context Name="CheatPanelAddon">
+<Context>
 	<Container	Size="445,185" ID="SpawnDlgContainer" Anchor="C,B" Offset="-3,0" ConsumeMouse="0" Hidden="1">
 		<SlideAnim	Size="parent,parent"	ID="SpawnDlg_Anim" Begin="0,185" End="0,0" Function="OutQuint" FunctionPower="1" Speed="1.5" Cycle="Once" Stopped="1">
 			<GridButton	ID="Top" Size="445,185"	Texture="Governments_Backing" SliceCorner="180,70" SliceTextureSize="352,145" Anchor="C,T">
@@ -11,7 +11,6 @@
 			<Stack ID="BonusStack" Anchor="C,T" Offset="0,18" StackGrowth="Down" Padding="3">
 				<Grid ID="BonusBacking1" Anchor="C,T" Offset="0,0" Size="405,46" Texture="Controls_SubContainer2" SliceCorner="17,17" SliceSize="1,1" SliceTextureSize="36,35" Color="GovBonusDark">
 					<Stack				ID="ButtonStack1" Anchor="C,C" Offset="0,-13" StackGrowth="Right" StackPadding="10" > 
-						
 						<Button 		ID="CheatButtonGold" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_GOLD">
 							<Label 		String="[ICON_GoldLarge]" TextAnchor="C,C" Style="FontNormal16"   Size="26,26" Anchor="C,C" Offset="0,0"/>
 						</Button>
@@ -41,7 +40,6 @@
 				</Grid>
 				<Grid ID="BonusBacking2" Anchor="C,T" Offset="0,0" Size="405,46" Texture="Controls_SubContainer2" SliceCorner="17,17" SliceSize="1,1" SliceTextureSize="36,35" Color="GovBonusDark">
 					<Stack				ID="ButtonStack2" Anchor="C,C" Offset="0,-13" StackGrowth="Right" StackPadding="10" > 
-
 						<Button 		ID="CheatButtonUnitMV" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_MOVES">
 							<Image 		ID="UnitMV" Icon="ICON_UNITOPERATION_MOVE_TO" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
 						</Button>
@@ -76,7 +74,6 @@
 						<Button 		ID="CheatButtonGov" Offset="0,3" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C">
 							<Image 		ID="GovPoints" Icon="ICON_CIVILOPEDIA_GOVERNORS" Size="27,27" Anchor="C,C" Offset="-1,-1" ToolTip="LOC_CHEAT_MENU_GOVPOINTS" />
 						</Button>
-						<!--<Image ID="keyb" Anchor="C,C" Offset="0,0" Size="40,40" Icon="ICON_VICTORY_SCORE" ToolTip="LOC_CHEAT_ICON" />-->
 						<GridButton ID="CheatButtonAllCivic" Size="160,34" Style="TabButton"  Offset="0,4" FontSize="14" TextOffset="0,2" String="LOC_CHEAT_MENU_AllCIVIC">
 							<GridButton	ID="CheatButtonAllCivic" Size="parent,parent"	Style="TabButton" ConsumeMouseButton="1" ConsumeMouseOver="1" />
 						</GridButton>
@@ -84,10 +81,5 @@
 				</Grid>
 			</Stack>
 		</SlideAnim>
-	</Container>
-	<Container ID="MenuButtonStack"  Size="auto,auto" Anchor="R,T">
-		<Button ID="CheatButtonMenu" Anchor="L,C" Size="40,40"  Texture="LaunchBar_Hook_ButtonSmall" Style="ButtonNormalText" ToolTip="LOC_CHEAT_TOGGLE_MENU">
-			<Image 		ID="Menu" Icon="ICON_NOTIFICATION_DECLARE_WAR" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="0,0"/>
-		</Button>	
 	</Container>
 </Context>
