@@ -124,7 +124,7 @@ function ChangeCityLoyalty()
 end
 function DestroyCity()
 	local pCity = UI.GetHeadSelectedCity();
-	if pPlayer:IsHuman(pCity == nil) then
+	if pCity ~= nil and pPlayer:IsHuman() then
 		local pCityName:string = Locale.Lookup(pCity:GetName());
 		local pCityPop:string = Locale.Lookup(pCity:GetPopulation());
 		LuaEvents.ShowRazeCityReminderPopup(playerID);
