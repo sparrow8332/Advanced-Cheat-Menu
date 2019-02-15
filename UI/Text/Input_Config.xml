@@ -27,6 +27,7 @@
 		<Row ActionId="ToggleCompleteAllCivic" Name="LOC_OPTIONS_ALL_CIVIC" Description="LOC_OPTIONS_ALL_CIVIC" CategoryId="CHEATMENU" ContextId="World" />	
 		<Row ActionId="ToggleGovernorpoints" Name="LOC_OPTIONS_GOVPOINTS" Description="LOC_OPTIONS_GOVPOINTS" CategoryId="CHEATMENU" ContextId="World" />		
 		<Row ActionId="ToggleGoldMore" Name="LOC_OPTIONS_GOLDMORE" Description="LOC_OPTIONS_GOLDMORE" CategoryId="CHEATMENU" ContextId="World" />		
+		<Row ActionId="ToggleDiplomaticFavor" Name="LOC_OPTIONS_DIPLOMATIC_FAVOR" Description="LOC_OPTIONS_DIPLOMATIC_FAVOR" CategoryId="CHEATMENU" ContextId="World" />		
 
 	</InputActions>
 	
@@ -50,5 +51,7 @@
 		<Row ActionId="ToggleGovernorpoints" Index="0" GestureType="KBMouse" GestureData="NONE"/>	
 		<Row ActionId="ToggleEra" Index="0" GestureType="KBMouse" GestureData="NONE"/>
 		<Row ActionId="ToggleObs" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="ToggleDiplomaticFavor" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+
 	</InputActionDefaultGestures>
 </GameInfo>

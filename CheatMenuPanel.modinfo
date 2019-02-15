@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- GameInfo -->
-<!-- Author: Sparrow -->
-<!-- DateCreated: 01/24/2019 2:27:04 PM -->
-
 <Mod id="f1e02dd3-6a94-47c4-a2d7-1d5219d8a40e" version="1.0">
 	<Properties>
 		<Name>[COLOR_LIGHTBLUE]Advanced Cheat Menu[ENDCOLOR]</Name>
@@ -11,8 +6,8 @@
 		<Teaser>Adds A Menu With Selected Cheat Options For InGame.</Teaser>
 		<Authors>Sparrow</Authors>
 		<SupportsMultiplayer>0</SupportsMultiplayer>
-		<SupportsHotSeat>0</SupportsHotSeat>
-		<AffectsSavedGames>0</AffectsSavedGames>
+		<AffectsSavedGames>1</AffectsSavedGames>
+		<CompatibleVersions>1.2,2.0</CompatibleVersions>
     </Properties>
 	<Blocks>
 		<Mod id="c8e215b9-b317-4fae-a9b5-907570575893" title="UI Plugins Framework" />
@@ -39,14 +34,10 @@
 		</AddUserInterfaces>
 		<ImportFiles id="CheatPanel_Import">
 			<Properties>
-				<LoadOrder>10100</LoadOrder>
+				<LoadOrder>99999</LoadOrder>
 			</Properties>
 			<File>UI/Script/MiniMap_Toolbar_Handler.lua</File>
 			<File>UI/Panels/Cheat_Menu_Panel_Functions.lua</File>
-			<File>UI/Panels/Cheat_Menu_Panel.xml</File>
-			<File>UI/Panels/Cheat_Menu_Panel.lua</File>
-			<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
-			<File>UI/Panels/Cheat_Panel_World_Tracker.lua</File>
 		</ImportFiles>
 		<UpdateText id="CheatPanel_Text">
 			<File>UI/Text/Options_Text.xml</File>
@@ -59,16 +50,16 @@
     <Files>
 		<File>UI/Script/MiniMap_Toolbar_Handler.lua</File>
 		<File>UI/Script/MiniMap_Toolbar_Handler.xml</File>
-		<File>UI/Panels/Cheat_Menu_Panel.xml</File>
-		<File>UI/Panels/Cheat_Menu_Panel.lua</File>
 		<File>UI/Script/Cheat_Menu_Panel_Script.lua</File>
 		<File>UI/POPUPS/Raze_City_Reminder_Popup.lua</File>
 		<File>UI/Popups/Raze_City_Reminder_Popup.xml</File>
+		<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
+		<File>UI/Panels/Cheat_Panel_World_Tracker.lua</File>
+		<File>UI/Panels/Cheat_Menu_Panel_Functions.lua</File>	
+		<File>UI/Panels/Cheat_Menu_Panel.xml</File>
+		<File>UI/Panels/Cheat_Menu_Panel.lua</File>
 		<File>UI/Text/Options_Text.xml</File>
 		<File>UI/Text/Localisation.sql</File>
 		<File>UI/Text/Input_Config.xml</File>
-		<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
-		<File>UI/Panels/Cheat_Panel_World_Tracker.lua</File>
-		<File>UI/Panels/Cheat_Menu_Panel_Functions.lua</File>
     </Files>
 </Mod>

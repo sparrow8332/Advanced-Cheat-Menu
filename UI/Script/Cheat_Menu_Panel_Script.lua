@@ -9,6 +9,15 @@
 -- // ----------------------------------------------------------------------------------------------
 local iPlayer;
 local iCity;
+local autorestoreAttack : boolean = false;
+local autorestoreHealth : boolean = false;
+local autorestoreMove   : boolean = false;
+local autorestorePromo  : boolean = false;
+
+local targetMovePoints = 400;
+
+local prevCheatMoveUnit = nil;
+local prevCheatMovePoints = nil;
 
 -- // ----------------------------------------------------------------------------------------------
 -- // Event Handlers
@@ -28,9 +37,10 @@ function ChangeGold(playerID, pNewGold)
 end
 function CompleteProduction(playerID)
 	local pPlayer = Players[playerID]
+	local pCity = pPlayer:GetCities():FindID(iCity)	
+	local pCityBuildQueue = pCity:GetBuildQueue();
 	if iPlayer == playerID then
-		local pCity = pPlayer:GetCities():FindID(iCity)	
-		pCity:GetBuildQueue():FinishProgress()		
+		pCityBuildQueue:FinishProgress()		
 	end
 end
 function CompleteAllResearch(playerID)
@@ -67,7 +77,7 @@ end
 function ChangePopulation(playerID)
 	local pPlayer = Players[playerID]	
 	if iPlayer == playerID then
-	local pCity = pPlayer:GetCities():FindID(iCity)	
+		local pCity = pPlayer:GetCities():FindID(iCity)	
 		pCity:ChangePopulation(1)		
 	end
 end
@@ -114,10 +124,26 @@ function UnitHealChange(playerID, unitID)
 		pUnit:SetDamage(0);
 	end
 end
+function UnitFormCorps(playerID, unitID)
+	local pUnit = UnitManager.GetUnit(playerID, unitID)
+    if (pUnit ~= nil) then
+		pUnit:SetMilitaryFormation(MilitaryFormationTypes.CORPS_FORMATION);
+	end
+end
+function UnitFormArmy(playerID, unitID)
+	local pUnit = UnitManager.GetUnit(playerID, unitID)
+    if (pUnit ~= nil) then
+		pUnit:SetMilitaryFormation(MilitaryFormationTypes.ARMY_FORMATION);
+	end
+end
 function ChangeEnvoy(playerID, pNewEnvoy)
 	local pPlayer = Players[playerID]
     local pEnvoy = pPlayer:GetInfluence()
     pEnvoy:ChangeTokensToGive(pNewEnvoy)
+end
+function ChangeDiplomaticFavor(playerID, pNewFavor)
+	local pPlayer = Players[playerID]
+    pPlayer:ChangeDiplomaticFavor(pNewFavor)
 end
 function ChangeGovPoints(playerID, pNewGP)
 	local pPlayer = Players[playerID];
@@ -139,24 +165,36 @@ end
 -- // ----------------------------------------------------------------------------------------------
 -- // Lua Events
 -- // ----------------------------------------------------------------------------------------------
+function Initialize()
 
-	LuaEvents.ChangePlayerGpoints.Add( ChangeGovPoints )
-	LuaEvents.ChangePlayerScoreEra.Add( ChangeEraScore )
-	LuaEvents.ChangeFOW.Add( RevealAll )
-	LuaEvents.ChangePlayerEnvoy.Add( ChangeEnvoy )
-	LuaEvents.ChangePlayerLoyalty.Add( ChangeCityLoyalty )
-	LuaEvents.ChangePlayerGold.Add( ChangeGold )
-	LuaEvents.CompletePlayerProduction.Add( CompleteProduction )
-	LuaEvents.CompleteAllPlayerResearch.Add( CompleteAllResearch )
-	LuaEvents.CompletePlayerResearch.Add( CompleteResearch )
-	LuaEvents.CompleteAllPlayerCivic.Add( CompleteAllCivic )
-	LuaEvents.CompletePlayerCivic.Add( CompleteCivic )
-	LuaEvents.ChangePlayerFaith.Add( ChangeFaith )
-	LuaEvents.ChangePlayerPopulation.Add( ChangePopulation )
-	LuaEvents.ChangePromotion.Add( UnitPromote )
-	LuaEvents.ChangeUnitMovement.Add( UnitMovementChange )
-	LuaEvents.ChangeUnitHealth.Add( UnitHealChange )
-	LuaEvents.AddUnitMovement.Add( UnitAddMovement )
-	LuaEvents.DuplicateUnit.Add( OnDuplicate )	
 	Events.CitySelectionChanged.Add(SetValues)
+	
+	if ( not ExposedMembers.MOD_CheatMenu) then ExposedMembers.MOD_CheatMenu = {}; end
+	ExposedMembers.MOD_CheatMenu.ChangeDiplomaticFavor = ChangeDiplomaticFavor;
+	ExposedMembers.MOD_CheatMenu.ChangeGold = ChangeGold;
+	ExposedMembers.MOD_CheatMenu.ChangeGovPoints = ChangeGovPoints;
+	ExposedMembers.MOD_CheatMenu.ChangeEraScore = ChangeEraScore;
+	ExposedMembers.MOD_CheatMenu.RevealAll = RevealAll;
+	ExposedMembers.MOD_CheatMenu.OnDuplicate = OnDuplicate;
+	ExposedMembers.MOD_CheatMenu.UnitFormCorps = UnitFormCorps;
+	ExposedMembers.MOD_CheatMenu.UnitFormArmy = UnitFormArmy;
+	ExposedMembers.MOD_CheatMenu.ChangeEnvoy = ChangeEnvoy;
+	ExposedMembers.MOD_CheatMenu.ChangeCityLoyalty = ChangeCityLoyalty;
+	ExposedMembers.MOD_CheatMenu.CompleteProduction = CompleteProduction;
+	ExposedMembers.MOD_CheatMenu.CompleteAllResearch = CompleteAllResearch;
+	ExposedMembers.MOD_CheatMenu.CompleteResearch = CompleteResearch;
+	ExposedMembers.MOD_CheatMenu.CompleteAllCivic = CompleteAllCivic;
+	ExposedMembers.MOD_CheatMenu.CompleteCivic = CompleteCivic;
+	ExposedMembers.MOD_CheatMenu.ChangeFaith = ChangeFaith;
+	ExposedMembers.MOD_CheatMenu.ChangePopulation = ChangePopulation;
+	ExposedMembers.MOD_CheatMenu.UnitPromote = UnitPromote;
+	ExposedMembers.MOD_CheatMenu.UnitMovementChange = UnitMovementChange;
+	ExposedMembers.MOD_CheatMenu.UnitHealChange = UnitHealChange;
+	ExposedMembers.MOD_CheatMenu.UnitAddMovement = UnitAddMovement;
+	ExposedMembers.MOD_CheatMenu_Initialized = true;
+	
+	print( " ###################################### Cheat Menu Initialization Started ################################################ " );
 
+end
+
+Initialize();

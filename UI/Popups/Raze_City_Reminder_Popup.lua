@@ -96,10 +96,6 @@ function ShowRazeCityReminderPopup(player:number)
 	Controls.PopupStack:ReprocessAnchoring();
 	Controls.RazeCityPanel:ReprocessAnchoring();
 	ContextPtr:SetHide(false);
-	Controls.PopupAlphaIn:SetToBeginning();
-	Controls.PopupAlphaIn:Play();
-	Controls.PopupSlideIn:SetToBeginning();
-	Controls.PopupSlideIn:Play();
 	ContextPtr:SetInputHandler(OnInputHandler);
 end
 function OnInputHandler( uiMsg, wParam, lParam )
@@ -127,5 +123,8 @@ function Initialize()
 	LuaEvents.NotificationPanel_OpenRazeCityChooser.Add(OnShowRazeCityReminderPopup);
 	Controls.ModalScreenClose:RegisterCallback(Mouse.eLClick, OnClose);
 	LuaEvents.ShowRazeCityReminderPopup.Add(OnShowRazeCityReminderPopup);
+	if ( not ExposedMembers.MOD_CheatMenu) then ExposedMembers.MOD_CheatMenu = {}; end
+	ExposedMembers.MOD_CheatMenu.DestroyCity = OnShowRazeCityReminderPopup;
+	ExposedMembers.MOD_CheatMenu_Initialized = true;
 end
 Initialize();

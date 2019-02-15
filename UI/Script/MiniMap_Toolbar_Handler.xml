@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2019 FiatAccompli -->
 <Context>
+  <!-- This is reparented to show up in the minimap "toolbar" on startup 
+       so that there's no need to alter minimap.lua/minimap.xml in this mod. 
+       Other mods (notably More Lenses) change these in meaningful ways. -->
   <Stack ID="AdditionalButtons" Anchor="R,C" StackGrowth="Right" StackPadding="-2">>
   </Stack>
 
   <Instance Name="MinimapBarButtonInstance">
-    <Stack StackGrowth="Right" Size="auto,auto" Anchor="L,C" StackPadding="-2">>
+    <Stack StackGrowth="Right" Size="auto,auto" Anchor="L,C" StackPadding="-2">
+      <Image ID="Bolt" Anchor="L,C" Size="7,7" Texture="LaunchBar_TrackPip" Color="255,255,255,200" Offset="0,-3"/>
       <Button ID="Button" Anchor="L,C" Size="40,40" Texture="LaunchBar_Hook_ButtonSmall" Style="ButtonNormalText">
         <Image ID="Image" Anchor="C,C" Size="24,24" StretchMode="Fill"/>
       </Button>

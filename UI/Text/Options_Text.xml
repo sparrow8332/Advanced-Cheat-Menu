@@ -62,5 +62,8 @@
 		<Row Tag="LOC_OPTIONS_GOVPOINTS" Language="en_US">
 			<Text>Adds +1 Governor Title Point</Text>
 		</Row>
+		<Row Tag="LOC_OPTIONS_DIPLOMATIC_FAVOR" Language="en_US">
+			<Text>Add +100 Diplomatic Favor</Text>
+		</Row>
 	</LocalizedText>
 </GameData>

@@ -7,8 +7,6 @@
 			</Grid>
 			<Grid ID="RazeCityWindow" Anchor="C,C" Size="380,auto" AutoSizePadding="0,10" Style="ScreenFrame">
 				<Button    ID="ModalScreenClose" Texture="Controls_CloseLarge" Size="44,44" Anchor="R,T"    Offset="2,5"    />
-
-
 				<Stack ID="PopupStack" Size="180,auto" Anchor="L,T" Offset="-20,70" StackGrowth="Bottom" StackPadding="8">
 					<Container Size="1,1"/>
 					<Stack StackGrowth="Right" Anchor="L,T" Offset="70,0" Padding="5">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Context>
+<Context Name="CheatPanelAddon">
 	<Container	Size="445,185" ID="SpawnDlgContainer" Anchor="C,B" Offset="-3,0" ConsumeMouse="0" Hidden="1">
 		<SlideAnim	Size="parent,parent"	ID="SpawnDlg_Anim" Begin="0,185" End="0,0" Function="OutQuint" FunctionPower="1" Speed="1.5" Cycle="Once" Stopped="1">
 			<GridButton	ID="Top" Size="445,185"	Texture="Governments_Backing" SliceCorner="180,70" SliceTextureSize="352,145" Anchor="C,T">
@@ -26,15 +26,14 @@
 						<Button 		ID="CheatButtonScience" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_SCIENCE">
 							<Label 		String="[ICON_ScienceLarge]" TextAnchor="C,C" Style="FontNormal16"   Size="26,26" Anchor="C,C" Offset="0,0"/>
 						</Button>					
-
 						<Button 		ID="CheatButtonEnvoy" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_ENVOY">
 							<Image 		ID="EnvoyIcon" Icon="ICON_NOTIFICATION_GIVE_INFLUENCE_TOKEN" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
 						</Button>
-						<Button 		ID="CheatButtonEra" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_ERA">
-							<Image 		ID="ErasScore" Icon="ICON_CIVILOPEDIA_HISTORIC_MOMENTS" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
+						<Button 		ID="CheatButtonDiplo" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C">
+							<Label 		ID="Diplo" String="[ICON_FAVOR_LARGE]" Size="30,30" Anchor="C,C" Offset="0,0" ToolTip="LOC_CHEAT_MENU_DIPLOMATIC_FAVOR" />
 						</Button>
-						<Button 		ID="CheatButtonObs" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_OBVS">
-							<Image 		ID="Obs" Icon="ICON_EMERGENCY_BACKSTAB" Size="27,27" Anchor="C,C" Offset="-1,-1" ToolTip="LOC_CHEAT_MENU_OBVS" />
+						<Button 		ID="CheatButtonGov" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C">
+							<Image 		ID="GovPoints" Icon="ICON_CIVILOPEDIA_GOVERNORS" Size="27,27" Anchor="C,C" Offset="-1,-1" ToolTip="LOC_CHEAT_MENU_GOVPOINTS" />
 						</Button>
 					</Stack>
 				</Grid>
@@ -46,20 +45,20 @@
 						<Button 		ID="CheatButtonHeal" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_HEAL">
 							<Image 		ID="HealIcon" Icon="ICON_UNITOPERATION_HEAL" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
 						</Button>
-						<Button 		ID="CheatButtonPromote" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_XP">
-							<Image 		ID="UnitXP" Icon="ICON_UNITCOMMAND_PROMOTE" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
-						</Button>
 						<Button 		ID="CheatButtonAddMovement" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_MOVE">
 							<Image 		ID="AddMv" Icon="ICON_UNITOPERATION_MOVE_TO_UNIT" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
 						</Button>
-						<Button 		ID="CheatButtonDuplicate" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_DUPLICATE">
-							<Image 		ID="DuplicateUnit" Icon="ICON_UNITCOMMAND_GIFT" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
+						<Button 		ID="CheatButtonEra" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_ERA">
+							<Image 		ID="ErasScore" Icon="ICON_CIVILOPEDIA_HISTORIC_MOMENTS" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
+						</Button>
+						<Button 		ID="CheatButtonLoyalty" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_LOYALTY">
+							<Image 		ID="Loyalty" Icon="ICON_CIVILOPEDIA_CONCEPTS" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
 						</Button>
 						<Button 		ID="CheatButtonPopulation" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_POP">
 							<Image 		ID="PopulationIcon" Icon="ICON_CITIZEN" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
 						</Button>
-						<Button 		ID="CheatButtonLoyalty" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_LOYALTY">
-							<Image 		ID="Loyalty" Icon="ICON_CIVILOPEDIA_CONCEPTS" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
+						<Button 		ID="CheatButtonObs" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_OBVS">
+							<Image 		ID="Obs" Icon="ICON_EMERGENCY_BACKSTAB" Size="27,27" Anchor="C,C" Offset="-1,-1" ToolTip="LOC_CHEAT_MENU_OBVS" />
 						</Button>
 						<Button 		ID="CheatButtonDestroy" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C">
 							<Image 		ID="Destroy" Icon="ICON_NOTIFICATION_CONSIDER_RAZE_CITY" Size="27,27" Anchor="C,C" Offset="-1,-1" ToolTip="LOC_DESTROY_CITY_HEADER" />
@@ -68,14 +67,23 @@
 				</Grid>
 				<Grid ID="BonusBacking3" Anchor="C,T" Offset="0,0" Size="405,46" Texture="Controls_SubContainer2" SliceCorner="17,17" SliceSize="1,1" SliceTextureSize="36,35" Color="GovBonusDark">
 					<Stack				ID="ButtonStack2" Anchor="C,C" Offset="0,-1" StackGrowth="Right" StackPadding="10" > 
-						<GridButton ID="CheatButtonAllTech" Size="160,34" Style="TabButton" Offset="0,4" FontSize="14" TextOffset="0,2" String="LOC_CHEAT_MENU_AllTECH">
-							<GridButton	ID="CheatButtonAllTech" Size="parent,parent"	Style="TabButton" ConsumeMouseButton="1" ConsumeMouseOver="1" />
+						<GridButton ID="CheatButtonAllTech" Size="70,34" Style="TabButton" Offset="0,4" FontSize="14" TextOffset="0,2" String="LOC_CHEAT_MENU_AllTECH">
+							<GridButton	ID="CheatButtonAllTech" Size="parent,parent"	Style="TabButton" ConsumeMouseButton="1" ConsumeMouseOver="1" ToolTip="LOC_CHEAT_MENU_AllTECH_TOOLTIP"/>
 						</GridButton>
-						<Button 		ID="CheatButtonGov" Offset="0,3" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C">
-							<Image 		ID="GovPoints" Icon="ICON_CIVILOPEDIA_GOVERNORS" Size="27,27" Anchor="C,C" Offset="-1,-1" ToolTip="LOC_CHEAT_MENU_GOVPOINTS" />
+						<Button 		ID="CheatButtonCorps" Offset="-1,2" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" >
+							<Label 		ID="Corps" String="[ICON_Corps]" Style="FontNormal16" Size="23,23" Anchor="C,C" Offset="-1,-1" ToolTip="LOC_FORM_CORPS"/>
 						</Button>
-						<GridButton ID="CheatButtonAllCivic" Size="160,34" Style="TabButton"  Offset="0,4" FontSize="14" TextOffset="0,2" String="LOC_CHEAT_MENU_AllCIVIC">
-							<GridButton	ID="CheatButtonAllCivic" Size="parent,parent"	Style="TabButton" ConsumeMouseButton="1" ConsumeMouseOver="1" />
+						<Button 		ID="CheatButtonArmy" Offset="-1,2" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C">
+							<Label 		ID="Army" String="[ICON_Army]" Size="27,27" Anchor="C,C" Offset="-1,-1" ToolTip="LOC_FORM_ARMY" />
+						</Button>
+						<Button 		ID="CheatButtonDuplicate" Offset="-1,2" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_DUPLICATE">
+							<Image 		ID="DuplicateUnit" Icon="ICON_UNITCOMMAND_GIFT" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
+						</Button>
+						<Button 		ID="CheatButtonPromote" Offset="-1,2" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_XP">
+							<Image 		ID="UnitXP" Icon="ICON_UNITCOMMAND_PROMOTE" TextAnchor="C,C" Style="FontNormal16"   Size="23,23" Anchor="C,C" Offset="-1,-1"/>
+						</Button>
+						<GridButton ID="CheatButtonAllCivic" Size="70,34" Style="TabButton"  Offset="0,4" FontSize="14" TextOffset="0,2" String="LOC_CHEAT_MENU_AllCIVIC">
+							<GridButton	ID="CheatButtonAllCivic" Size="parent,parent"	Style="TabButton" ConsumeMouseButton="1" ConsumeMouseOver="1" ToolTip="LOC_CHEAT_MENU_AllCIVIC_TOOLTIP"/>
 						</GridButton>
 					</Stack>
 				</Grid>
