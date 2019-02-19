@@ -4,9 +4,6 @@
 -- // ----------------------------------------------------------------------------------------------
 include("Cheat_Menu_Panel_Functions");
 
--- // ----------------------------------------------------------------------------------------------
--- // Functions
--- // ----------------------------------------------------------------------------------------------
 local m_CheatPanelState:number		= 0;
 
 function AttachPanelToWorldTracker()
@@ -24,12 +21,14 @@ function AttachPanelToWorldTracker()
 		end
 	end
 end
+
 -- // ----------------------------------------------------------------------------------------------
 -- // Attach Panel To WorldTracker
 -- // ----------------------------------------------------------------------------------------------
 function OnLoadGameViewStateDone()
 	AttachPanelToWorldTracker();
 end
+
 -- // ----------------------------------------------------------------------------------------------
 -- // Panel Control and Checkbox Attach
 -- // ----------------------------------------------------------------------------------------------
@@ -91,22 +90,21 @@ local function InitializeControls()
 	Controls.ToggleCheatPanel:SetCheck(true);
 	UpdateCheatPanel(true);
 end
+
 -- // ----------------------------------------------------------------------------------------------
 -- // Init
 -- // ----------------------------------------------------------------------------------------------
 function Initialize()
 	m_IsLoading = true;
-
 		Events.LoadGameViewStateDone.Add(OnLoadGameViewStateDone);
 		Events.LoadGameViewStateDone.Add(InitDropdown);
 		InitializeControls();
-		if(GameConfiguration.IsNetworkMultiplayer()) then
+		if  GameConfiguration.IsAnyMultiplayer() or GameConfiguration.IsHotseat() then
 			UpdateCheatPanel(true);
 			Controls.ToggleCheatPanel:SetHide(true);
 		else
 			UpdateCheatPanel(false);
 		end
-
 	m_IsLoading = false;
 end
 Initialize();

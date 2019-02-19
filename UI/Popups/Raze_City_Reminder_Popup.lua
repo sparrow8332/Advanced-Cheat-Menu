@@ -44,13 +44,10 @@ end
 function ShowRazeCityReminderPopup(player:number)
 	local localPlayerID = Game.GetLocalPlayer();
 	local localPlayer = Players[localPlayerID];
-	
 	if (localPlayer == nil) then
 		return;
 	end 
-
 	g_pSelectedCity  = UI.GetHeadSelectedCity();
-
 	Controls.PanelHeader:LocalizeAndSetText("LOC_DESTROY_CITY_HEADER");
     Controls.CityHeader:LocalizeAndSetText("LOC_RAZE_CITY_NAME_LABEL");
     Controls.CityName:LocalizeAndSetText(g_pSelectedCity:GetName());
@@ -59,15 +56,12 @@ function ShowRazeCityReminderPopup(player:number)
     Controls.CityDistricts:LocalizeAndSetText("LOC_DESTROY_CITY_DISTRICTS_LABEL");
 	local iNumDistricts = g_pSelectedCity:GetDistricts():GetNumZonedDistrictsRequiringPopulation();
     Controls.NumDistricts:SetText(tostring(iNumDistricts));
-
 	local szWarmongerString;
 	local eOriginalOwner = g_pSelectedCity:GetOriginalOwner();
 	local originalOwnerPlayer = Players[eOriginalOwner];
 	local eOwnerBeforeOccupation = g_pSelectedCity:GetOwnerBeforeOccupation();
 	local bWipedOut = (originalOwnerPlayer:GetCities():GetCount() < 1);
 	local eLastTransferType = g_pSelectedCity:GetLastTransferType();
-
-
 	if (localPlayer:GetDiplomacy():CanLiberateCityTo(eOwnerBeforeOccupation)) then
 		Controls.Button2:LocalizeAndSetText("LOC_RAZE_CITY_LIBERATE_FOUNDER_BUTTON_LABEL", PlayerConfigurations[eOwnerBeforeOccupation]:GetCivilizationShortDescription());
 		Controls.Button2:LocalizeAndSetToolTip("LOC_DESTROY_CITY_LIBERATE_EXPLANATION");
@@ -84,7 +78,6 @@ function ShowRazeCityReminderPopup(player:number)
 		Controls.Button3:LocalizeAndSetToolTip("LOC_KEEP_CITY_EXPLANATION");
 	end
 	Controls.Button4:LocalizeAndSetText("LOC_RAZE_CITY_RAZE_BUTTON_LABEL");
-	
 	if g_pSelectedCity:IsCapital() then
 		Controls.Button4:LocalizeAndSetToolTip("LOC_RAZE_CITY_RAZE_DISABLED_EXPLANATION");
 		Controls.Button4:SetDisabled(true);
@@ -112,7 +105,7 @@ function OnShowRazeCityReminderPopup( player:number, civic:number)
     UIManager:QueuePopup( ContextPtr, PopupPriority.Current);
   end
 end
--- ===========================================================================
+
 function Initialize()
 	ContextPtr:SetHide(true)
 	ContextPtr:SetInputHandler( OnInputHandler, true );

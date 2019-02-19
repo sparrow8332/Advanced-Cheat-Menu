@@ -41,7 +41,6 @@
 					  <Image Texture="CompletedPopup_Pattern" Anchor="L,C" Offset="25,-5"/>
 					  <Image Texture="CompletedPopup_Pattern" Anchor="R,C" Offset="25,-5" FlipX="1"/>
 					</Container>
-
 					<Stack StackGrowth="Right" Offset="2,110" Padding="5" WrapWidth="parent" Anchor="C,B">
 					  <GridButton   ID="Button1"     Size="350,41"   Style="MainButton" Hidden="1"/>
 					  <GridButton   ID="Button2"     Size="350,41"   Style="MainButton" Hidden="1"/>
@@ -53,5 +52,3 @@
 		</Image>
     </Box>
 </Context>
-
-

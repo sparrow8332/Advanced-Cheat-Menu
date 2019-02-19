@@ -8,9 +8,6 @@ include("SupportFunctions");
 include("PopupDialog");
 include("AnimSidePanelSupport");
 
--- // ----------------------------------------------------------------------------------------------
--- // Variables
--- // ----------------------------------------------------------------------------------------------
 local playerID 						= Game.GetLocalPlayer();
 local pPlayer 						= Players[playerID];
 local pTreasury 					= pPlayer:GetTreasury();
@@ -21,24 +18,33 @@ local pNewGP 						= 1;
 local pNewEnvoy 					= 5;
 local pNewReligion 					= 1000;
 local pNewFavor						= 100;
-local MINIMAP_BUTTON_ID				= "CheatMenuButton";
+local LAUNCH_BAR_BUTTON_ID 			= "CheatMenuButton";
 local m_hideCheatPanel				= false;
 local m_IsLoading:boolean			= false;
 local m_IsAttached:boolean			= false;
 
 -- // ----------------------------------------------------------------------------------------------
--- // Functions
+-- // MENU BUTTON 
 -- // ----------------------------------------------------------------------------------------------
-function OnRegisterMinimapBarAdditions()
-  local buttonInfo = {
-    Icon = "ICON_VICTORY_DEFAULT",
+function OnRegisterLaunchBarAdditions()
+  local launchBarButtonInfo = {
+    IconTexture = {
+      Icon = "ICON_VICTORY_SCORE",
+    };
+    BaseTexture = {
+      OffsetX = 0;
+      OffsetY = 0;
+      Sheet = "LaunchBar_Hook_GreatPeopleButton";
+      HoverOffsetX = 0;
+      HoverOffsetY = 49;
+    };
     Tooltip = "LOC_CHEAT_TOGGLE_MENU";
-    Id = MINIMAP_BUTTON_ID;
-  };
-  LuaEvents.MinimapBar_AddButton(buttonInfo);
+    Id = LAUNCH_BAR_BUTTON_ID;
+  }
+  LuaEvents.LaunchBar_AddButton(launchBarButtonInfo);
 end
-function OnMinimapBarCustomButtonClicked(id:string)
-	if id == MINIMAP_BUTTON_ID then
+function OnLaunchBarCustomButtonClicked(buttonId:string)
+	if buttonId == LAUNCH_BAR_BUTTON_ID then
 		OnMenuButtonToggle();
 	end
 end
@@ -49,6 +55,12 @@ end
 function ChangeEraScore()
 	if pPlayer:IsHuman() then
         ExposedMembers.MOD_CheatMenu.ChangeEraScore(playerID);
+    end
+	RefreshActionPanel();
+end
+function ChangeEraScoreBack()
+	if pPlayer:IsHuman() then
+        ExposedMembers.MOD_CheatMenu.ChangeEraScoreBack(playerID);
     end
 	RefreshActionPanel();
 end
@@ -115,6 +127,11 @@ function ChangePopulation()
 		ExposedMembers.MOD_CheatMenu.ChangePopulation(playerID);
 	end
 end
+function RestoreCityHealth()
+ 	if pPlayer:IsHuman() then		
+		ExposedMembers.MOD_CheatMenu.RestoreCityHealth(playerID);
+	end
+end
 function ChangeCityLoyalty()
  	if pPlayer:IsHuman() then		
 		ExposedMembers.MOD_CheatMenu.ChangeCityLoyalty(playerID);
@@ -128,6 +145,11 @@ function DestroyCity()
 		ExposedMembers.MOD_CheatMenu.DestroyCity(playerID);	
 	end
 end
+--function FreeCity()
+--	if pCity ~= nil and pPlayer:IsHuman() then
+--		ExposedMembers.MOD_CheatMenu.FreeCity(playerID);	
+--	end
+--end
 function UnitPromote()
 	local pUnit = UI.GetHeadSelectedUnit();
     if pUnit ~= nil and pPlayer:IsHuman() then
@@ -161,7 +183,6 @@ function OnDuplicate()
 		local unitID = pUnit:GetID();
 		local unitType:string = GameInfo.Units[pUnit:GetUnitType()].UnitType;
 		ExposedMembers.MOD_CheatMenu.OnDuplicate(playerID, unitID, unitType);
-		UI:DeselectUnitID(unitID);
     end
 end
 function UnitHealChange()
@@ -213,9 +234,6 @@ function RevealAll()
 	end		
 end
 
--- // ----------------------------------------------------------------------------------------------
--- // REFRESH
--- // ----------------------------------------------------------------------------------------------
 function RefreshActionPanel()
 	if pPlayer:IsHuman() then
 		local UPContextPtr :table = ContextPtr:LookUpControl("/InGame/ActionPanel");

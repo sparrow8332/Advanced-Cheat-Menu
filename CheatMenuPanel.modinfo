@@ -6,12 +6,15 @@
 		<Teaser>Adds A Menu With Selected Cheat Options For InGame.</Teaser>
 		<Authors>Sparrow</Authors>
 		<SupportsMultiplayer>0</SupportsMultiplayer>
+		<SupportsPlayByCloud>0</SupportsPlayByCloud>
+		<SupportsHotSeat>0</SupportsHotSeat>
+		<SupportsSinglePlayer>1</SupportsSinglePlayer>
 		<AffectsSavedGames>1</AffectsSavedGames>
-		<CompatibleVersions>1.2,2.0</CompatibleVersions>
+		<CompatibleVersions>2.0</CompatibleVersions>
     </Properties>
-	<Blocks>
+	<Dependencies>
 		<Mod id="c8e215b9-b317-4fae-a9b5-907570575893" title="UI Plugins Framework" />
-	</Blocks>
+	</Dependencies>
 	<FrontEndActions>
 		<UpdateDatabase id="Keybind_Options">
 			<File>UI/Text/Input_Config.xml</File>
@@ -24,19 +27,19 @@
 		<AddUserInterfaces id="CheatPanel_UI">
 			<Properties>
 				<Context>InGame</Context>
+				<LoadOrder>99999</LoadOrder>
 			</Properties>
 			<Items>
-				<File>UI/Script/MiniMap_Toolbar_Handler.xml</File>
 				<File>UI/Panels/Cheat_Menu_Panel.xml</File>
 				<File>UI/Popups/Raze_City_Reminder_Popup.xml</File>
 				<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
+				<File>UI/Panels/Cheat_Panel_Button_Launchbar.xml</File>
 			</Items>
 		</AddUserInterfaces>
 		<ImportFiles id="CheatPanel_Import">
 			<Properties>
 				<LoadOrder>99999</LoadOrder>
 			</Properties>
-			<File>UI/Script/MiniMap_Toolbar_Handler.lua</File>
 			<File>UI/Panels/Cheat_Menu_Panel_Functions.lua</File>
 		</ImportFiles>
 		<UpdateText id="CheatPanel_Text">
@@ -48,9 +51,8 @@
 		</AddGameplayScripts>
 	</Components>
     <Files>
-		<File>UI/Script/MiniMap_Toolbar_Handler.lua</File>
-		<File>UI/Script/MiniMap_Toolbar_Handler.xml</File>
 		<File>UI/Script/Cheat_Menu_Panel_Script.lua</File>
+		<File>UI/Panels/Cheat_Panel_Button_Launchbar.xml</File>
 		<File>UI/POPUPS/Raze_City_Reminder_Popup.lua</File>
 		<File>UI/Popups/Raze_City_Reminder_Popup.xml</File>
 		<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>

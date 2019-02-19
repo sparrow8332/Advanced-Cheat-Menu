@@ -3,21 +3,8 @@
 -- // DateCreated: 01/24/2019 2:27:04 PM
 -- // ----------------------------------------------------------------------------------------------
 
-
--- // ----------------------------------------------------------------------------------------------
--- // Variables
--- // ----------------------------------------------------------------------------------------------
 local iPlayer;
 local iCity;
-local autorestoreAttack : boolean = false;
-local autorestoreHealth : boolean = false;
-local autorestoreMove   : boolean = false;
-local autorestorePromo  : boolean = false;
-
-local targetMovePoints = 400;
-
-local prevCheatMoveUnit = nil;
-local prevCheatMovePoints = nil;
 
 -- // ----------------------------------------------------------------------------------------------
 -- // Event Handlers
@@ -28,6 +15,13 @@ function ChangeEraScore(playerID)
     local pPlayer = Players[playerID]
 	if (Game.ChangePlayerEraScore ~= nil) then
 		Game.ChangePlayerEraScore(playerID, 10);
+	end
+end
+function ChangeEraScoreBack(playerID)
+	local playerID = Game.GetLocalPlayer()
+    local pPlayer = Players[playerID]
+	if (Game.ChangePlayerEraScore ~= nil) then
+		Game.ChangePlayerEraScore(playerID, -10);
 	end
 end
 function ChangeGold(playerID, pNewGold)
@@ -78,7 +72,23 @@ function ChangePopulation(playerID)
 	local pPlayer = Players[playerID]	
 	if iPlayer == playerID then
 		local pCity = pPlayer:GetCities():FindID(iCity)	
-		pCity:ChangePopulation(1)		
+		pCity:ChangePopulation(1)	
+	end
+end
+function RestoreCityHealth(playerID)
+	local pPlayer = Players[playerID]	
+	if iPlayer == playerID then
+		local pCity = pPlayer:GetCities():FindID(iCity)	
+		if (pCity ~= nil) then
+			local pCityDistricts = pCity:GetDistricts();
+			if (pCityDistricts ~= nil) then
+				local pCityCenter = pCityDistricts:GetDistrictAtLocation(pCity:GetX(), pCity:GetY());
+				if (pCityCenter ~= nil) then
+					pCityCenter:SetDamage(DefenseTypes.DISTRICT_GARRISON, 0);
+					pCityCenter:SetDamage(DefenseTypes.DISTRICT_OUTER, 0);
+				end
+			end
+		end		
 	end
 end
 function ChangeCityLoyalty(playerID)
@@ -88,6 +98,15 @@ function ChangeCityLoyalty(playerID)
 		pCity:ChangeLoyalty(100)		
 	end
 end
+--function FreeCity(playerID)
+--	local pPlayer = Players[playerID]
+--	local pCity = pPlayer:GetCities():FindID(iCity)	
+--	if iPlayer == playerID then
+--		if pCity ~= nil then
+--			CityManager.TransferCityToFreeCities(pCity);
+--		end
+--	end
+--end
 function UnitPromote(playerID, unitID)
     local pUnit = UnitManager.GetUnit(playerID, unitID)
 	local pUnitExp = pUnit:GetExperience():GetExperienceForNextLevel();
@@ -107,13 +126,13 @@ function UnitAddMovement(playerID, unitID)
     local pUnit = UnitManager.GetUnit(playerID, unitID)
     if (pUnit ~= nil) then
 		UnitManager.ChangeMovesRemaining(pUnit, 5);
+		UnitManager.RestoreUnitAttacks(pUnit);
     end
 end
 function OnDuplicate(playerID, unitId, unitType)
 	local DupeUnit = nil;
 	local pUnit = UnitManager.GetUnit( playerID, unitId ); 
 	local pPlot = Map.GetPlot(pUnit:GetX(), pUnit:GetY());
-	local pUnitXP = pUnit:GetExperience();
 	if pUnit ~= nil and Players[playerID]:IsHuman() then
 		DupeUnit = UnitManager.InitUnitValidAdjacentHex(playerID, unitType, pPlot:GetX(), pPlot:GetY(), 1);
 	end
@@ -157,7 +176,7 @@ function RevealAll(playerID)
 		PlayerManager.SetLocalObserverTo(PlayerTypes.OBSERVER);
 	end
 end
-function SetValues(playerID, cityID, DistrictID)
+function SetValues(playerID, cityID)
 	iPlayer = playerID
 	iCity = cityID	
 end
@@ -172,8 +191,10 @@ function Initialize()
 	if ( not ExposedMembers.MOD_CheatMenu) then ExposedMembers.MOD_CheatMenu = {}; end
 	ExposedMembers.MOD_CheatMenu.ChangeDiplomaticFavor = ChangeDiplomaticFavor;
 	ExposedMembers.MOD_CheatMenu.ChangeGold = ChangeGold;
+	--ExposedMembers.MOD_CheatMenu.FreeCity = FreeCity;
 	ExposedMembers.MOD_CheatMenu.ChangeGovPoints = ChangeGovPoints;
 	ExposedMembers.MOD_CheatMenu.ChangeEraScore = ChangeEraScore;
+	ExposedMembers.MOD_CheatMenu.ChangeEraScoreBack = ChangeEraScoreBack;
 	ExposedMembers.MOD_CheatMenu.RevealAll = RevealAll;
 	ExposedMembers.MOD_CheatMenu.OnDuplicate = OnDuplicate;
 	ExposedMembers.MOD_CheatMenu.UnitFormCorps = UnitFormCorps;
@@ -191,9 +212,10 @@ function Initialize()
 	ExposedMembers.MOD_CheatMenu.UnitMovementChange = UnitMovementChange;
 	ExposedMembers.MOD_CheatMenu.UnitHealChange = UnitHealChange;
 	ExposedMembers.MOD_CheatMenu.UnitAddMovement = UnitAddMovement;
+	ExposedMembers.MOD_CheatMenu.RestoreCityHealth = RestoreCityHealth;
 	ExposedMembers.MOD_CheatMenu_Initialized = true;
 	
-	print( " ###################################### Cheat Menu Initialization Started ################################################ " );
+	print( "Cheat Menu Initialization Started" );
 
 end
 

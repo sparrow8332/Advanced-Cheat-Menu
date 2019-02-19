@@ -4,24 +4,23 @@
 -- // ----------------------------------------------------------------------------------------------
 include("Cheat_Menu_Panel_Functions");
 
--- // ----------------------------------------------------------------------------------------------
--- // CHEAT MENU CONTROL
--- // ----------------------------------------------------------------------------------------------
-local m_CheatMenuState:number		= 0;
+local m_CheatMenuState:number = 0;
 
 local function Hide()
-	ContextPtr:SetHide(true);
-	UI.PlaySound("UI_Pause_Menu_On");
 	if not Controls.SpawnDlgContainer:IsHidden() then
+		ContextPtr:SetHide(true);
+		UI.PlaySound("UI_Pause_Menu_On");
 		Controls.SpawnDlg_Anim:Reverse();	
 		Controls.SpawnDlgContainer:SetHide( true );
+		UIManager:DequeuePopup(ContextPtr);
 	end
 	m_CheatMenuState = 0;
 end
 local function Show()
-	ContextPtr:SetHide(false);
-	UI.PlaySound("Tech_Tray_Slide_Open");
 	if Controls.SpawnDlgContainer:IsHidden() then
+		UIManager:QueuePopup(ContextPtr, PopupPriority.Low);
+		ContextPtr:SetHide(false);
+		UI.PlaySound("Tech_Tray_Slide_Open");
 		Controls.SpawnDlg_Anim:SetToBeginning();
 		Controls.SpawnDlg_Anim:Play();
 		Controls.SpawnDlgContainer:SetHide( false );
@@ -46,7 +45,7 @@ function OnInputHandler( pInputStruct:table )
 	local uiMsg = pInputStruct:GetMessageType();
 	if uiMsg == KeyEvents.KeyUp then 
 		return KeyHandler( pInputStruct:GetKey() ); 
-	end;
+	end
 	return false;
 end
 
@@ -54,6 +53,9 @@ end
 -- // Int
 -- // ----------------------------------------------------------------------------------------------
 local function InitializeControls()
+		--Controls.CheatButtonFreeCity:RegisterCallback(Mouse.eLClick, FreeCity);
+		Controls.CheatButtonCityHeal:RegisterCallback(Mouse.eLClick, RestoreCityHealth); 
+		Controls.CheatButtonEra2:RegisterCallback(Mouse.eLClick, ChangeEraScoreBack);
 		Controls.CheatButtonGov:RegisterCallback(Mouse.eLClick, ChangeGovPoints);
 		Controls.CheatButtonEra:RegisterCallback(Mouse.eLClick, ChangeEraScore);
 		Controls.CheatButtonGold:RegisterCallback(Mouse.eLClick, ChangeGold);
@@ -76,6 +78,8 @@ local function InitializeControls()
 		Controls.CheatButtonCorps:RegisterCallback(Mouse.eLClick, UnitFormCorps);
 		Controls.CheatButtonArmy:RegisterCallback(Mouse.eLClick, UnitFormArmy);			
 		Controls.CheatButtonDiplo:RegisterCallback(Mouse.eLClick, ChangeDiplomaticFavor);
+		Controls.CheatButtonCityHeal:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
+		Controls.CheatButtonEra2:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 		Controls.CheatButtonDuplicate:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 		Controls.CheatButtonEra:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 		Controls.CheatButtonGold:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
@@ -99,17 +103,14 @@ local function InitializeControls()
 		Controls.SpawnDlgContainer:SetHide( true );
 end
 function Initialize()
-		
 		ContextPtr:SetInputHandler( OnInputHandler, true );
 		Events.InputActionTriggered.Add( OnInputActionTriggered );
 		LuaEvents.EndGameMenu_Shown.Add( Hide );
-		LuaEvents.DiplomacyActionView_HideIngameUI.Add( Hide );
-		LuaEvents.WonderRevealPopup_Shown.Add( Hide );
-		LuaEvents.NaturalWonderPopup_Shown.Add( Hide );
-		LuaEvents.MinimapBar_RegisterAdditions.Add(OnRegisterMinimapBarAdditions);
-		LuaEvents.MinimapBar_CustomButtonClicked.Add(OnMinimapBarCustomButtonClicked);
-
-		OnRegisterMinimapBarAdditions();
+		LuaEvents.LaunchBar_RaiseTechTree.Add( Hide );
+		LuaEvents.LaunchBar_RaiseCivicsTree.Add( Hide );
+		LuaEvents.LaunchBar_RegisterAdditions.Add(OnRegisterLaunchBarAdditions);
+		LuaEvents.LaunchBar_CustomButtonClicked.Add(OnLaunchBarCustomButtonClicked);
+		OnRegisterLaunchBarAdditions();
 		InitializeControls();
 end
 Initialize();
