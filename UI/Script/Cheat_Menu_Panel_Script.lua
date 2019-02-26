@@ -191,7 +191,7 @@ function Initialize()
 	if ( not ExposedMembers.MOD_CheatMenu) then ExposedMembers.MOD_CheatMenu = {}; end
 	ExposedMembers.MOD_CheatMenu.ChangeDiplomaticFavor = ChangeDiplomaticFavor;
 	ExposedMembers.MOD_CheatMenu.ChangeGold = ChangeGold;
-	--ExposedMembers.MOD_CheatMenu.FreeCity = FreeCity;
+	ExposedMembers.MOD_CheatMenu.FreeCity = FreeCity;
 	ExposedMembers.MOD_CheatMenu.ChangeGovPoints = ChangeGovPoints;
 	ExposedMembers.MOD_CheatMenu.ChangeEraScore = ChangeEraScore;
 	ExposedMembers.MOD_CheatMenu.ChangeEraScoreBack = ChangeEraScoreBack;
@@ -214,9 +214,7 @@ function Initialize()
 	ExposedMembers.MOD_CheatMenu.UnitAddMovement = UnitAddMovement;
 	ExposedMembers.MOD_CheatMenu.RestoreCityHealth = RestoreCityHealth;
 	ExposedMembers.MOD_CheatMenu_Initialized = true;
-	
 	print( "Cheat Menu Initialization Started" );
-
 end
 
 Initialize();

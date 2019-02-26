@@ -18,36 +18,9 @@ local pNewGP 						= 1;
 local pNewEnvoy 					= 5;
 local pNewReligion 					= 1000;
 local pNewFavor						= 100;
-local LAUNCH_BAR_BUTTON_ID 			= "CheatMenuButton";
 local m_hideCheatPanel				= false;
 local m_IsLoading:boolean			= false;
 local m_IsAttached:boolean			= false;
-
--- // ----------------------------------------------------------------------------------------------
--- // MENU BUTTON 
--- // ----------------------------------------------------------------------------------------------
-function OnRegisterLaunchBarAdditions()
-  local launchBarButtonInfo = {
-    IconTexture = {
-      Icon = "ICON_VICTORY_SCORE",
-    };
-    BaseTexture = {
-      OffsetX = 0;
-      OffsetY = 0;
-      Sheet = "LaunchBar_Hook_GreatPeopleButton";
-      HoverOffsetX = 0;
-      HoverOffsetY = 49;
-    };
-    Tooltip = "LOC_CHEAT_TOGGLE_MENU";
-    Id = LAUNCH_BAR_BUTTON_ID;
-  }
-  LuaEvents.LaunchBar_AddButton(launchBarButtonInfo);
-end
-function OnLaunchBarCustomButtonClicked(buttonId:string)
-	if buttonId == LAUNCH_BAR_BUTTON_ID then
-		OnMenuButtonToggle();
-	end
-end
 
 -- // ----------------------------------------------------------------------------------------------
 -- // MENU BUTTON FUNCTIONS
@@ -67,7 +40,7 @@ end
 function ChangeGold()
 	local pNewGold = 1000
 	if pPlayer:IsHuman() then
-        ExposedMembers.MOD_CheatMenu.ChangeGold(playerID, pNewGold); 
+		ExposedMembers.MOD_CheatMenu.ChangeGold(playerID, pNewGold); 
     end
 end
 function ChangeGoldMore()
