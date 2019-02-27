@@ -68,7 +68,6 @@
 		</UpdateText>
 	</InGameActions>
     <Files>
-		<File>UI/Script/Cheat_Menu_Panel_Script.lua</File>
 		<File>UI/Popups/Raze_City_Reminder_Popup.lua</File>
 		<File>UI/Popups/Raze_City_Reminder_Popup.xml</File>
 		<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
