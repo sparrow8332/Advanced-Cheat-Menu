@@ -33,11 +33,6 @@
 		</UpdateText>
 	</FrontEndActions>
   	<InGameActions>
-		<UpdateDatabase id="CheatPanel_Scripts_XML">
-			<Items>
-				<File>UI/Script/Cheat_Menu_Panel_Script.xml</File>
-			</Items>
-		</UpdateDatabase>
 		<AddGameplayScripts id="CheatPanel_Scripts">
 			<Properties>
 				<LoadOrder>900</LoadOrder>
@@ -68,12 +63,12 @@
 		</UpdateText>
 	</InGameActions>
     <Files>
+		<File>UI/Script/Cheat_Menu_Panel_Script.lua</File>
 		<File>UI/Popups/Raze_City_Reminder_Popup.lua</File>
 		<File>UI/Popups/Raze_City_Reminder_Popup.xml</File>
 		<File>UI/Panels/Cheat_Panel_World_Tracker.xml</File>
 		<File>UI/Panels/Cheat_Panel_World_Tracker.lua</File>
 		<File>UI/Panels/Cheat_Menu_Panel_Functions.lua</File>	
-		<File>UI/Script/Cheat_Menu_Panel_Script.xml</File>
 		<File>UI/Text/Options_Text.xml</File>
 		<File>UI/Text/Localisation.sql</File>
 		<File>UI/Text/Input_Config.xml</File>
