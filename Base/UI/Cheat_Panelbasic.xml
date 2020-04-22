@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Name="CheatPanelAddonbasic">
+	<Grid ID="CheatPanelbasic" Offset="0,0" Size="296,25"  Texture="Controls_DropdownPanel" Color="143,122,82,200" Anchor="L,T" ConsumeMouseOver="1" Hidden="0" >
+	  <Box Offset="0,0" Size="parent-5,default" Color="143,122,82,200">
+		<Image Texture="Controls_GradientSmall" Size="parent,20" Color="0,0,0,255" Anchor="L,T"/>
+		<Container ID="PanelContainerbasic" Offset="0,0" Align="Center" Size="parent,1" >		
+			<Button ID="HeaderTitlebasic" Anchor="C,C" Offset="0,5" ConsumeAllMouse="1" Size="250,23">
+				<Label ID="PanelTitlebasic" Anchor="C,C" Offset="0,7" Align="Center" Size="200,90" WrapWidth="Parent-40" Align="Center" Style="FontFlair16" Color2="143,122,82,255" Color0="106,93,69,230" SmallCaps="20" SmallCapsLeading="0" SmallCapsType="EveryWord" KerningAdjustment="0" String="{LOC_CHEAT_MENU_HEADER_BASIC:upper}" >	<!--LOC_CHEAT_MENU_HEADER	-->		
+			</Button>
+			<Stack ID="ButtonStackbasic" Anchor="C,T" Offset="0,15" StackGrowth="Down" Padding="-5" Hidden="1">
+				<Grid 					ID="ButtonGroup1basic" Anchor="C,T" Offset="0,0" Size="445,46" >
+					<Stack				ID="ButtonStack1basic" Anchor="C,C" Offset="0,0" StackGrowth="Right" StackPadding="8" > 
+						<Button 		ID="CheatButtonGoldbasic" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_GOLD">
+							<Label 		String="[ICON_GoldLarge]" TextAnchor="C,C" Style="FontNormal16"   Size="26,26" Anchor="C,C" Offset="0,0"/>
+						</Button>
+						<Button 		ID="CheatButtonFaithbasic" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_FAITH">
+							<Label 		String="[ICON_FaithLarge]" TextAnchor="C,C" Style="FontNormal16"   Size="26,26" Anchor="C,C" Offset="0,0"/>
+						</Button>
+						<Button 		ID="CheatButtonProductionbasic" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_PRODUCTION">
+							<Label 		String="[ICON_ProductionLarge]" TextAnchor="C,C" Style="FontNormal16"   Size="26,26" Anchor="C,C" Offset="0,0"/>
+						</Button>	
+						<Button 		ID="CheatButtonCulturebasic" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_CULTURE">
+							<Label 		String="[ICON_CultureLarge]" TextAnchor="C,C" Style="FontNormal16"   Size="26,26" Anchor="C,C" Offset="0,0"/>
+						</Button>
+						<Button 		ID="CheatButtonSciencebasic" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_SCIENCE">
+							<Label 		String="[ICON_ScienceLarge]" TextAnchor="C,C" Style="FontNormal16"   Size="26,26" Anchor="C,C" Offset="0,0"/>
+						</Button>						
+					</Stack>
+				</Grid>
+				<Grid	ID="ButtonGroup3basic" Anchor="C,T" Offset="0,0" Size="445,46" >
+					<Stack				ID="ButtonStack3basic" Anchor="C,C" Offset="0,0" StackGrowth="Right" StackPadding="8" > 
+						<Button 		ID="CheatButtonUnitMVbasic" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_MOVES">
+							<Image 		ID="UnitMV" Icon="ICON_UNITOPERATION_MOVE_TO" Size="23,23" Anchor="C,C" Offset="-1,-1"/>
+						</Button>
+						<Button 		ID="CheatButtonHealbasic" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_HEAL">
+							<Image 		ID="HealIcon" Icon="ICON_UNITOPERATION_HEAL" Size="23,23" Anchor="C,C" Offset="-1,-1"/>
+						</Button>
+						<Button 		ID="CheatButtonPromotebasic" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_XP">
+							<Image 		ID="UnitXP" Icon="ICON_UNITCOMMAND_PROMOTE" Size="23,23" Anchor="C,C" Offset="-1,-1"/>
+						</Button>
+						<Button 		ID="CheatButtonEnvoybasic" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_ENVOY">
+							<Image 		ID="EnvoyIcon" Icon="ICON_NOTIFICATION_GIVE_INFLUENCE_TOKEN" Size="23,23" Anchor="C,C" Offset="-1,-1"/>
+						</Button>	
+						<Button 		ID="CheatButtonPopulationbasic" Offset="0,15" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_POP">
+							<Image 		ID="PopulationIcon" Icon="ICON_CITIZEN" Color="255,255,255,255" Size="24,24" Anchor="C,C" Offset="-1,-1"/>
+						</Button>					
+					</Stack>
+				</Grid>
+			</Stack>
+		</Container>
+		</Box>
+		<Box ID="ButtonSep1basic"Color="143,122,82,200" Anchor="L,T" Size="parent+5,2"Offset="0,23" Hidden="0" >
+			<Box Color="0,0,0,200" Anchor="L,T" Size="parent,1" AnchorSide="I,O"/>
+			<Box Color="0,0,0,200" Anchor="L,B" Size="parent,1" AnchorSide="I,O"/>
+		</Box>
+		<Box ID="ButtonSep2basic" Color="143,122,82,200" Anchor="L,T" Size="parent+5,2" Offset="0,107" Hidden="1" >
+            <Box Color="0,0,0,200" Anchor="L,T" Size="parent,1" AnchorSide="I,O"/>
+            <Box Color="0,0,0,200" Anchor="L,B" Size="parent,1" AnchorSide="I,O"/>
+        </Box>
+	</Grid>
+	<Container ID="CheatPanelStackbasic"  Size="auto,auto" Anchor="R,T">
+		<CheckBox ID="ToggleCheatPanelbasic" Anchor="R,T" Offset="0,22" Style="WorldTrackerCheckBox" TextOffset="-5" String="Cheat Panel" WrapWidth="180" Align="Right"Hidden="0" />
+	</Container>
+</Context>
