@@ -1,6 +1,6 @@
-# Advanced-Cheat-Menu
+# Cheat Menu Advanced
 
-This Mod Adds A Menu Panel With Selected Cheat Options For InGame.
+# Cheat Menu Light
 
 ## Key Features
 
