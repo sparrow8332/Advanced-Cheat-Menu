@@ -2,11 +2,13 @@
 -- // Author: Sparrow
 -- // DateCreated: 01/24/2019 2:27:04 PM
 -- // ----------------------------------------------------------------------------------------------
+
 include("Civ6Common");
 include("InstanceManager");
 include("SupportFunctions");
 include("PopupDialog");
 include("AnimSidePanelSupport");
+include("CitySupport");
 
 local playerID 						= Game.GetLocalPlayer();
 local pPlayer 						= Players[playerID];
@@ -16,7 +18,6 @@ local pEnvoy 						= pPlayer:GetInfluence();
 local pVis 							= PlayersVisibility[playerID];
 local pNewGP 						= 1;
 local pNewEnvoy 					= 5;
-local pNewReligion 					= 1000;
 local pNewFavor						= 100;
 local m_hideCheatPanel				= false;
 local m_IsLoading:boolean			= false;
@@ -25,6 +26,17 @@ local m_IsAttached:boolean			= false;
 -- // ----------------------------------------------------------------------------------------------
 -- // MENU BUTTON FUNCTIONS
 -- // ----------------------------------------------------------------------------------------------
+
+function ChangeLUXURYResources(playerID)
+ 	if pPlayer:IsHuman() then		
+		ExposedMembers.MOD_CheatMenu.ChangeLUXURYResources(playerID);
+	end
+end
+function ChangeSTRATEGICResources(playerID)
+ 	if pPlayer:IsHuman() then		
+		ExposedMembers.MOD_CheatMenu.ChangeSTRATEGICResources(playerID);
+	end
+end
 function ChangeEraScore()
 	if pPlayer:IsHuman() then
         ExposedMembers.MOD_CheatMenu.ChangeEraScore(playerID);
@@ -38,7 +50,7 @@ function ChangeEraScoreBack()
 	RefreshActionPanel();
 end
 function ChangeGold()
-	local pNewGold = 1000
+	local pNewGold:number = tonumber(Controls.GoldAmount:GetText());
 	if pPlayer:IsHuman() then
 		ExposedMembers.MOD_CheatMenu.ChangeGold(playerID, pNewGold); 
     end
@@ -50,8 +62,9 @@ function ChangeGoldMore()
     end
 end
 function CompleteProduction()
+	local pNewProduction:number = tonumber(Controls.ProductionAmount:GetText());
 	if pPlayer:IsHuman() then
-		ExposedMembers.MOD_CheatMenu.CompleteProduction(playerID);
+		ExposedMembers.MOD_CheatMenu.CompleteProduction(playerID, pNewProduction);
 	end
 end
 function CompleteAllResearch()
@@ -91,13 +104,15 @@ function CompleteCivic()
 	end	
 end
 function ChangeFaith()
+	local pNewFaith:number = tonumber(Controls.FaithAmount:GetText());
 	if pPlayer:IsHuman() then
-		ExposedMembers.MOD_CheatMenu.ChangeFaith(playerID, pNewReligion);
+		ExposedMembers.MOD_CheatMenu.ChangeFaith(playerID, pNewFaith);
     end
 end
 function ChangePopulation()
- 	if pPlayer:IsHuman() then		
-		ExposedMembers.MOD_CheatMenu.ChangePopulation(playerID);
+	local pCity = UI.GetHeadSelectedCity();
+	if pCity ~= nil and pPlayer:IsHuman() then
+		ExposedMembers.MOD_CheatMenu.ChangePopulation(playerID, pCity, pNewPopulation);
 	end
 end
 function RestoreCityHealth()
@@ -118,11 +133,6 @@ function DestroyCity()
 		ExposedMembers.MOD_CheatMenu.DestroyCity(playerID);	
 	end
 end
---function FreeCity()
---	if pCity ~= nil and pPlayer:IsHuman() then
---		ExposedMembers.MOD_CheatMenu.FreeCity(playerID);	
---	end
---end
 function UnitPromote()
 	local pUnit = UI.GetHeadSelectedUnit();
     if pUnit ~= nil and pPlayer:IsHuman() then
@@ -151,18 +161,32 @@ function UnitAddMovement()
     end
 end
 function OnDuplicate()
+	local pRelig = nil;
+	if pPlayer:GetReligion() ~= nil and pPlayer:GetReligion():GetReligionTypeCreated() ~= -1 then
+		pRelig = pPlayer:GetReligion():GetReligionTypeCreated();
+	end
 	local pUnit = UI.GetHeadSelectedUnit();
 	if pUnit ~= nil and pPlayer:IsHuman() then
 		local unitID = pUnit:GetID();
 		local unitType:string = GameInfo.Units[pUnit:GetUnitType()].UnitType;
-		ExposedMembers.MOD_CheatMenu.OnDuplicate(playerID, unitID, unitType);
+		ExposedMembers.MOD_CheatMenu.OnDuplicate(playerID, unitID, unitType, pRelig);
     end
 end
+
 function UnitHealChange()
 	local pUnit = UI.GetHeadSelectedUnit();
     if pUnit ~= nil and pPlayer:IsHuman() then
 		local unitID = pUnit:GetID();
         ExposedMembers.MOD_CheatMenu.UnitHealChange(playerID, unitID);
+    	UI:DeselectUnitID(unitID);
+		UI:SelectUnitID(unitID);
+	end
+end
+function UnitHealAllChange()
+	local pUnit = UI.GetHeadSelectedUnit();
+    if pUnit ~= nil and pPlayer:IsHuman() then
+		local unitID = pUnit:GetID();
+        ExposedMembers.MOD_CheatMenu.UnitHealAllChange(playerID, unitID);
     	UI:DeselectUnitID(unitID);
 		UI:SelectUnitID(unitID);
 	end
@@ -185,12 +209,29 @@ function UnitFormArmy()
 		UI:SelectUnitID(unitID);
 	end
 end
+function MakeFreeCity()
+	if pPlayer:IsHuman() then
+		ExposedMembers.MOD_CheatMenu.MakeFreeCity(playerID, pCity);
+    end
+end
+function FreeBuilder()
+	if pPlayer:IsHuman() then
+		ExposedMembers.MOD_CheatMenu.FreeBuilder(playerID, pCity);
+    end
+end
+function FreeSettler()
+	if pPlayer:IsHuman() then
+		ExposedMembers.MOD_CheatMenu.FreeSettler(playerID, pCity);
+    end
+end
 function ChangeEnvoy()
 	if pPlayer:IsHuman() then
 		ExposedMembers.MOD_CheatMenu.ChangeEnvoy(playerID, pNewEnvoy);
     end
 end
+
 function ChangeDiplomaticFavor()
+	local pNewFavor:number = tonumber(Controls.DiploAmount:GetText());
 	if pPlayer:IsHuman() then
 		ExposedMembers.MOD_CheatMenu.ChangeDiplomaticFavor(playerID, pNewFavor);
     end
@@ -254,6 +295,9 @@ function OnInputActionTriggered( actionId )
 	if ( actionId == Input.GetActionId("ToggleUnitHealChange") ) then
 		UnitHealChange();
 	end
+		if ( actionId == Input.GetActionId("ToggleUnitHealChange") ) then
+		UnitHealAllChange();
+	end
 	if ( actionId == Input.GetActionId("ToggleUnitPromote") ) then
 		UnitPromote();
 	end
@@ -279,3 +323,4 @@ function OnInputActionTriggered( actionId )
 		ChangeDiplomaticFavor();
 	end
 end
+

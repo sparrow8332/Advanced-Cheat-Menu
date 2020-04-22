@@ -2,23 +2,40 @@
 -- // Author: Sparrow
 -- // DateCreated: 01/24/2019 2:27:04 PM
 -- // ----------------------------------------------------------------------------------------------
-include("Cheat_Menu_Panel_Functions");
 
+include("Cheat_Menu_Panel_Functions");
+include("InstanceManager")
+-- ===========================================================================
+
+local RiseAndFall 					= "1B28771A-C749-434B-9053-D1380C553DE9"
+local GatheringStorm 				= "4873eb62-8ccc-4574-b784-dda455e74e68"
 local m_CheatPanelState:number		= 0;
 
+-- ====================================================================================================
+--	If the official Civ6 Expansion "Rise and Fall" (XP1) and "Gathering Storm" (XP2) is active.
+-- ====================================================================================================
+
+function IsRiseAndFallActive()
+	local RiseAndFallActive:boolean  = Modding.IsModActive(RiseAndFall);
+	return RiseAndFallActive;
+end
+function IsGatheringStormActive()
+	local GatheringStormActive:boolean  = Modding.IsModActive(GatheringStorm);
+	return GatheringStormActive;
+end
+-- ===========================================================================
+
 function AttachPanelToWorldTracker()
-	if (m_IsLoading) then
+	if (IsLoading) then
 		return;
 	end
-	if (not m_IsAttached) then
-		local worldTrackerPanel:table = ContextPtr:LookUpControl("/InGame/WorldTracker/PanelStack");
-		if (worldTrackerPanel ~= nil) then
-			Controls.CheatPanel:ChangeParent(worldTrackerPanel);
-			worldTrackerPanel:AddChildAtIndex(Controls.CheatPanel, 1);
-			worldTrackerPanel:CalculateSize();
-			worldTrackerPanel:ReprocessAnchoring();
-			m_IsAttached = true;
-		end
+	if not isAttached then
+		local worldTrackerPanel:table = ContextPtr:LookUpControl("/InGame/WorldTracker/PanelStack");		
+		Controls.CheatPanel:ChangeParent(worldTrackerPanel);
+		worldTrackerPanel:AddChildAtIndex(Controls.CheatPanel, 1);
+		worldTrackerPanel:CalculateSize();
+		worldTrackerPanel:ReprocessAnchoring();
+		isAttached = true;
 	end
 end
 
@@ -44,22 +61,32 @@ function InitDropdown()
 	parent.ReprocessAnchoring();
 	Events.LoadGameViewStateDone.Remove(InitDropdown);
 end
-function OnPanelTitleClicked()
-    if(m_CheatPanelState == 0) then
-		UI.PlaySound("Tech_Tray_Slide_Open");
-		Controls.CheatPanel:SetSizeY(225);
-		Controls.ButtonStackMIN:SetHide(false);
-		Controls.ButtonSep:SetHide(false);
-		m_CheatPanelState = 1;
 
+-- ====================================================================================================
+
+function OnPanelTitleClicked()
+	if(m_CheatPanelState == 0) then
+		UI.PlaySound("Tech_Tray_Slide_Open");
+		Controls.CheatPanel:SetSizeY(317);
+		Controls.ButtonGroup:SetHide(false);
+		Controls.ButtonSep2:SetHide(false);
+		Controls.ButtonSep3:SetHide(false);
+		Controls.ButtonSep4:SetHide(false);
+		Controls.ButtonSep5:SetHide(false);
+		Controls.CheatButtonErabg:SetDisabled(true);		
+		m_CheatPanelState = 1;
 	else
 		UI.PlaySound("Tech_Tray_Slide_Closed");
 		Controls.CheatPanel:SetSizeY(25);
-		Controls.ButtonStackMIN:SetHide(true);
-		Controls.ButtonSep:SetHide(true);
+		Controls.ButtonGroup:SetHide(true);
+		Controls.ButtonSep2:SetHide(true);
+		Controls.ButtonSep3:SetHide(true);
+		Controls.ButtonSep4:SetHide(true);
+		Controls.ButtonSep5:SetHide(true);
 		m_CheatPanelState = 0;
 	end	
 end
+
 function KeyHandler( key:number )
 	if key == Keys.VK_ESCAPE then
 		Hide();
@@ -76,8 +103,12 @@ function OnInputHandler( pInputStruct:table )
 end
 
 local function InitializeControls()
+	Controls.CheatSpawnSettler:RegisterCallback(Mouse.eLClick, FreeSettler);
+	Controls.CheatSpawnBuilder:RegisterCallback(Mouse.eLClick, FreeBuilder);
+	Controls.CheatMakeFreeCity:RegisterCallback(Mouse.eLClick, MakeFreeCity);
+	Controls.CheatResourcesLux:RegisterCallback(Mouse.eLClick, ChangeLUXURYResources);
+	Controls.CheatResourcesStr:RegisterCallback(Mouse.eLClick, ChangeSTRATEGICResources);
 	Controls.HeaderTitle:RegisterCallback(Mouse.eLClick, OnPanelTitleClicked);
-	--Controls.CheatButtonFreeCity:RegisterCallback(Mouse.eLClick, FreeCity);
 	Controls.CheatButtonCityHeal:RegisterCallback(Mouse.eLClick, RestoreCityHealth); 
 	Controls.CheatButtonEra2:RegisterCallback(Mouse.eLClick, ChangeEraScoreBack);
 	Controls.CheatButtonGov:RegisterCallback(Mouse.eLClick, ChangeGovPoints);
@@ -97,11 +128,14 @@ local function InitializeControls()
 	Controls.CheatButtonUnitMV:RegisterCallback(Mouse.eLClick, UnitMovementChange);
 	Controls.CheatButtonAddMovement:RegisterCallback(Mouse.eLClick, UnitAddMovement);
 	Controls.CheatButtonHeal:RegisterCallback(Mouse.eLClick, UnitHealChange);
+	Controls.CheatButtonHealAll:RegisterCallback(Mouse.eLClick, UnitHealAllChange);
 	Controls.CheatButtonEnvoy:RegisterCallback(Mouse.eLClick, ChangeEnvoy);
 	Controls.CheatButtonObs:RegisterCallback(Mouse.eLClick, RevealAll);	
 	Controls.CheatButtonCorps:RegisterCallback(Mouse.eLClick, UnitFormCorps);
 	Controls.CheatButtonArmy:RegisterCallback(Mouse.eLClick, UnitFormArmy);			
 	Controls.CheatButtonDiplo:RegisterCallback(Mouse.eLClick, ChangeDiplomaticFavor);
+	Controls.CheatSpawnBuilder:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
+	Controls.CheatSpawnBuilder:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 	Controls.CheatButtonCityHeal:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 	Controls.CheatButtonEra2:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 	Controls.CheatButtonDuplicate:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
@@ -120,6 +154,7 @@ local function InitializeControls()
 	Controls.CheatButtonUnitMV:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 	Controls.CheatButtonAddMovement:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 	Controls.CheatButtonHeal:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
+	Controls.CheatButtonHealAll:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 	Controls.CheatButtonEnvoy:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 	Controls.CheatButtonObs:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over") end);
 	Controls.CheatButtonGov:RegisterCallback( Mouse.eMouseEnter, function() UI.PlaySound("Main_Menu_Mouse_Over"); end);
@@ -133,18 +168,20 @@ end
 -- // Init
 -- // ----------------------------------------------------------------------------------------------
 function Initialize()
-	m_IsLoading = true;
+	print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    print("        Cheat Panel UI Loaded")          
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+	Events.InputActionTriggered.Add( OnInputActionTriggered );
+	ContextPtr:SetInputHandler( OnInputHandler, true );
+	InitializeControls();
+	IsExpansion2Active();
+	IsExpansion1Active();
+	
+	IsLoading = true;
 		Events.LoadGameViewStateDone.Add(OnLoadGameViewStateDone);
 		Events.LoadGameViewStateDone.Add(InitDropdown);
-		Events.InputActionTriggered.Add( OnInputActionTriggered );
-		ContextPtr:SetInputHandler( OnInputHandler, true );
-		InitializeControls();
-		if  GameConfiguration.IsNetworkMultiplayer() then
-			UpdateCheatPanel(true);
-			Controls.ToggleCheatPanel:SetHide(true);
-		else
-			UpdateCheatPanel(false);
-		end
-	m_IsLoading = false;
+		UpdateCheatPanel(false);
+	IsLoading = false;
+	
 end
 Initialize();

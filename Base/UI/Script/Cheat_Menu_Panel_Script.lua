@@ -9,32 +9,57 @@ local iCity;
 -- // ----------------------------------------------------------------------------------------------
 -- // Event Handlers
 -- // ----------------------------------------------------------------------------------------------
-
-function ChangeEraScore(playerID)
+function ChangeLUXURYResources(playerID)
 	local playerID = Game.GetLocalPlayer()
     local pPlayer = Players[playerID]
-	if (Game.ChangePlayerEraScore ~= nil) then
-		Game.ChangePlayerEraScore(playerID, 10);
+	local resourceInfo = GameInfo.Resources();
+	local playerResources = Players[playerID]:GetResources();
+	local iValue = math.random(1, 3);
+	for resource in GameInfo.Resources() do
+	  if resource.ResourceClassType == "RESOURCECLASS_LUXURY" then
+		playerResources:ChangeResourceAmount(resource.Index, iValue);
+	  end
+	end
+end
+
+function ChangeSTRATEGICResources(playerID)
+	local playerID = Game.GetLocalPlayer()
+    local pPlayer = Players[playerID]
+	local resourceInfo = GameInfo.Resources();
+	local playerResources = Players[playerID]:GetResources();
+	local iValue = math.random(1, 3);
+	for resource in GameInfo.Resources() do
+	  if resource.ResourceClassType == "RESOURCECLASS_STRATEGIC" then
+		playerResources:ChangeResourceAmount(resource.Index, iValue);
+	  end
+	end
+end
+function ChangeEraScore(playerID)
+	local playerID = Game.GetLocalPlayer()
+	local pPlayer = Players[playerID]
+	if (Game.GetEras ~= nil) then
+		Game.GetEras():ChangePlayerEraScore(playerID, 10);
 	end
 end
 function ChangeEraScoreBack(playerID)
 	local playerID = Game.GetLocalPlayer()
     local pPlayer = Players[playerID]
-	if (Game.ChangePlayerEraScore ~= nil) then
-		Game.ChangePlayerEraScore(playerID, -10);
+	if (Game.GetEras ~= nil) then
+		Game.GetEras():ChangePlayerEraScore(playerID, -10);
 	end
 end
 function ChangeGold(playerID, pNewGold)
-    local pPlayer = Players[playerID]
+	local pPlayer = Players[playerID]
     local pTreasury = pPlayer:GetTreasury()
     pTreasury:ChangeGoldBalance(pNewGold)
 end
-function CompleteProduction(playerID)
+function CompleteProduction(playerID, pNewProduction)
 	local pPlayer = Players[playerID]
 	local pCity = pPlayer:GetCities():FindID(iCity)	
 	local pCityBuildQueue = pCity:GetBuildQueue();
 	if iPlayer == playerID then
-		pCityBuildQueue:FinishProgress()		
+		--pCityBuildQueue:FinishProgress()	
+		pCityBuildQueue:AddProgress(pNewProduction);
 	end
 end
 function CompleteAllResearch(playerID)
@@ -63,16 +88,49 @@ function CompleteCivic(playerID, pCivicComplete)
     local pCivics = pPlayer:GetCulture()
     pCivics:ChangeCurrentCulturalProgress(pCivicComplete)
 end
-function ChangeFaith(playerID, pNewReligion)
+function ChangeFaith(playerID, pNewFaith)
 	local pPlayer = Players[playerID]
     local pReligion = pPlayer:GetReligion()
-    pReligion:ChangeFaithBalance(pNewReligion)
+    pReligion:ChangeFaithBalance(pNewFaith)
 end
-function ChangePopulation(playerID)
+function ChangePopulation(playerID, pCity, pNewPopulation)
 	local pPlayer = Players[playerID]	
 	if iPlayer == playerID then
 		local pCity = pPlayer:GetCities():FindID(iCity)	
-		pCity:ChangePopulation(1)	
+		if pCity ~= nil then
+			pCity:ChangePopulation(1);
+		end
+	end
+end
+function MakeFreeCity(playerID, pCity)
+	local pPlayer = Players[playerID]
+	if iPlayer == playerID then
+		local pCity = pPlayer:GetCities():FindID(iCity)	
+		if pCity ~= nil then
+			--CityManager.TransferCityToFreeCities(pCity);
+		end	
+	end
+end
+function FreeBuilder(playerID, pCity)
+	local pPlayer = Players[playerID]
+	local DupeUnit = nil;
+	local iBuilder = GameInfo.Units["UNIT_BUILDER"].Index
+	if iPlayer == playerID then
+		local pCity = pPlayer:GetCities():FindID(iCity)	
+		if pCity ~= nil then
+			DupeUnit = UnitManager.InitUnitValidAdjacentHex(playerID, iBuilder, pCity:GetX(), pCity:GetY(), 1);
+		end	
+	end
+end
+function FreeSettler(playerID, pCity)
+	local pPlayer = Players[playerID]
+	local DupeUnit = nil;
+	local iSettler = GameInfo.Units["UNIT_SETTLER"].Index
+	if iPlayer == playerID then
+		local pCity = pPlayer:GetCities():FindID(iCity)	
+		if pCity ~= nil then
+			DupeUnit = UnitManager.InitUnitValidAdjacentHex(playerID, iSettler, pCity:GetX(), pCity:GetY(), 1);
+		end	
 	end
 end
 function RestoreCityHealth(playerID)
@@ -94,19 +152,10 @@ end
 function ChangeCityLoyalty(playerID)
 	local pPlayer = Players[playerID]	
 	if iPlayer == playerID then
-		local pCity = pPlayer:GetCities():FindID(iCity)	
+		local pCity = pPlayer:GetCities():FindID(iCity)
 		pCity:ChangeLoyalty(100)		
 	end
 end
---function FreeCity(playerID)
---	local pPlayer = Players[playerID]
---	local pCity = pPlayer:GetCities():FindID(iCity)	
---	if iPlayer == playerID then
---		if pCity ~= nil then
---			CityManager.TransferCityToFreeCities(pCity);
---		end
---	end
---end
 function UnitPromote(playerID, unitID)
     local pUnit = UnitManager.GetUnit(playerID, unitID)
 	local pUnitExp = pUnit:GetExperience():GetExperienceForNextLevel();
@@ -129,12 +178,20 @@ function UnitAddMovement(playerID, unitID)
 		UnitManager.RestoreUnitAttacks(pUnit);
     end
 end
-function OnDuplicate(playerID, unitId, unitType)
+function OnDuplicate(playerID, unitId, unitType, pRelig)
 	local DupeUnit = nil;
+	local pPlayer = Players[playerID];
+	local pRelig = nil;
 	local pUnit = UnitManager.GetUnit( playerID, unitId ); 
 	local pPlot = Map.GetPlot(pUnit:GetX(), pUnit:GetY());
 	if pUnit ~= nil and Players[playerID]:IsHuman() then
 		DupeUnit = UnitManager.InitUnitValidAdjacentHex(playerID, unitType, pPlot:GetX(), pPlot:GetY(), 1);
+		--newUnit = UnitManager.InitUnit(playerID, unitType, pPlot:GetX(), pPlot:GetY());
+	end
+	if pUnit:GetReligion() ~= nil and DupeUnit:GetReligion() ~= nil and pUnit:GetReligion():GetReligionType() ~= -1 then
+		DupeUnit:GetReligion():SetReligionType(pUnit:GetReligion():GetReligionType());
+	elseif pRelig ~= nil and DupeUnit:GetReligion() ~= nil and pRelig ~= -1 then
+		DupeUnit:GetReligion():SetReligionType( pRelig );
 	end
 end
 function UnitHealChange(playerID, unitID)
@@ -142,6 +199,16 @@ function UnitHealChange(playerID, unitID)
     if (pUnit ~= nil) then
 		pUnit:SetDamage(0);
 	end
+end
+function UnitHealAllChange(playerID, unitID)
+	local z = 1;
+	local pPlayer = Players[playerID];
+	local pUnits = pPlayer:GetUnits();
+	for ii, pUnit in pUnits:Members() do
+		UnitManager.RestoreMovementToFormation(pUnit);
+	 pUnit:SetDamage(0);
+		z = z + 1;			
+	end		
 end
 function UnitFormCorps(playerID, unitID)
 	local pUnit = UnitManager.GetUnit(playerID, unitID)
@@ -162,7 +229,9 @@ function ChangeEnvoy(playerID, pNewEnvoy)
 end
 function ChangeDiplomaticFavor(playerID, pNewFavor)
 	local pPlayer = Players[playerID]
-    pPlayer:ChangeDiplomaticFavor(pNewFavor)
+    if pPlayer:GetDiplomacy().ChangeFavor ~= nil then
+		pPlayer:GetDiplomacy():ChangeFavor(pNewFavor);
+	end	
 end
 function ChangeGovPoints(playerID, pNewGP)
 	local pPlayer = Players[playerID];
@@ -185,14 +254,18 @@ end
 -- // Lua Events
 -- // ----------------------------------------------------------------------------------------------
 function Initialize()
-
-	Events.CitySelectionChanged.Add(SetValues)
-	
+	print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    print("      Cheat Panel Script Loaded")          
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+	Events.CitySelectionChanged.Add(SetValues);
 	if ( not ExposedMembers.MOD_CheatMenu) then ExposedMembers.MOD_CheatMenu = {}; end
+	ExposedMembers.MOD_CheatMenu.MakeFreeCity = MakeFreeCity;
+	ExposedMembers.MOD_CheatMenu.ChangeLUXURYResources = ChangeLUXURYResources;
+	ExposedMembers.MOD_CheatMenu.ChangeSTRATEGICResources = ChangeSTRATEGICResources;
 	ExposedMembers.MOD_CheatMenu.ChangeDiplomaticFavor = ChangeDiplomaticFavor;
 	ExposedMembers.MOD_CheatMenu.ChangeGold = ChangeGold;
-	ExposedMembers.MOD_CheatMenu.FreeCity = FreeCity;
 	ExposedMembers.MOD_CheatMenu.ChangeGovPoints = ChangeGovPoints;
+	ExposedMembers.MOD_CheatMenu.ChangeResources = ChangeResources;
 	ExposedMembers.MOD_CheatMenu.ChangeEraScore = ChangeEraScore;
 	ExposedMembers.MOD_CheatMenu.ChangeEraScoreBack = ChangeEraScoreBack;
 	ExposedMembers.MOD_CheatMenu.RevealAll = RevealAll;
@@ -206,11 +279,14 @@ function Initialize()
 	ExposedMembers.MOD_CheatMenu.CompleteResearch = CompleteResearch;
 	ExposedMembers.MOD_CheatMenu.CompleteAllCivic = CompleteAllCivic;
 	ExposedMembers.MOD_CheatMenu.CompleteCivic = CompleteCivic;
+	ExposedMembers.MOD_CheatMenu.FreeSettler = FreeSettler;
+	ExposedMembers.MOD_CheatMenu.FreeBuilder = FreeBuilder;
 	ExposedMembers.MOD_CheatMenu.ChangeFaith = ChangeFaith;
 	ExposedMembers.MOD_CheatMenu.ChangePopulation = ChangePopulation;
 	ExposedMembers.MOD_CheatMenu.UnitPromote = UnitPromote;
 	ExposedMembers.MOD_CheatMenu.UnitMovementChange = UnitMovementChange;
 	ExposedMembers.MOD_CheatMenu.UnitHealChange = UnitHealChange;
+	ExposedMembers.MOD_CheatMenu.UnitHealAllChange = UnitHealAllChange;
 	ExposedMembers.MOD_CheatMenu.UnitAddMovement = UnitAddMovement;
 	ExposedMembers.MOD_CheatMenu.RestoreCityHealth = RestoreCityHealth;
 	ExposedMembers.MOD_CheatMenu_Initialized = true;

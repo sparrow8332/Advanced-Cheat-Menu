@@ -38,6 +38,9 @@
 		<Row Tag="LOC_OPTIONS_MOV" Language="en_US">
 			<Text>Restore Unit Movement</Text>
 		</Row>
+		<Row Tag="LOC_OPTIONS_5MOV" Language="en_US">
+			<Text>Add +5 to Unit Movement</Text>
+		</Row>
 		<Row Tag="LOC_OPTIONS_HP" Language="en_US">
 			<Text>Restore Unit Health</Text>
 		</Row>
