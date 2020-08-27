@@ -117,7 +117,7 @@ VALUES
 		("LOC_DESTROY_CITY_DISTRICTS_LABEL",		"zh_Hans_CN",	"地区："),
 		("LOC_RAZE_CITY_EXPLANATION",				"zh_Hans_CN",	"摧毁所选城市"),
 		("LOC_KEEP_CITY_EXPLANATION",				"zh_Hans_CN",	"暂时将这座城市留在你的帝国。"),
-		("LOC_DESTROY_CITY_LIBERATE_EXPLANATION",	"zh_Hans_CN",	"解放一个城市将把它归还给他们之前的一个所有者,	可能会把这个文明带回游戏中。");
+		("LOC_DESTROY_CITY_LIBERATE_EXPLANATION",	"zh_Hans_CN",	"解放一个城市将把它归还给他们之前的一个所有者,	可能会把这个文明带回游戏中。"),
 -- Japanese ------------------------------------------------------------------------------------------------------------
 		("LOC_CHEAT_MENU_ABOUT",  					"ja_JP",		"Cheat Panel By [Sparrow]"),
 		("LOC_CHEAT_EXPAND_MAX",  					"ja_JP",		"Hide Advanced Panel"),
