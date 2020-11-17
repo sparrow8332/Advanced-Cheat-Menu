@@ -52,6 +52,6 @@
 		<Row ActionId="ToggleEra" Index="0" GestureType="KBMouse" GestureData="NONE"/>
 		<Row ActionId="ToggleObs" Index="0" GestureType="KBMouse" GestureData="NONE"/>
 		<Row ActionId="ToggleDiplomaticFavor" Index="0" GestureType="KBMouse" GestureData="NONE"/>
-		<Row ActionId="Toggle5movement" Index="0" GestureType="KBMouse" GestureData="NONE"/>
+		<Row ActionId="Toggle5Movement" Index="0" GestureType="KBMouse" GestureData="NONE"/>
 	</InputActionDefaultGestures>
 </GameInfo>
