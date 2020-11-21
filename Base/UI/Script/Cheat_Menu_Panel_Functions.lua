@@ -317,7 +317,7 @@ function OnInputActionTriggered( actionId )
 		CompleteAllCivic();
 	end
 	if ( actionId == Input.GetActionId("ToggleMenu") ) then
-		RefreshActionPanel();
+		OnPanelTitleClicked();
 	end
 	if ( actionId == Input.GetActionId("ToggleDiplomaticFavor") ) then
 		ChangeDiplomaticFavor();
