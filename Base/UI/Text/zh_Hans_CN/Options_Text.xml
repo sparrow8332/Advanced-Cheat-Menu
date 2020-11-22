@@ -1,0 +1,75 @@
+<!-- GameInfo -->
+<!-- Author: orochi114 -->
+<!-- DateCreated: 11/21/2020 10:22:00 PM -->
+<?xml version="1.0" encoding="utf-8"?>
+
+<GameData>
+	<LocalizedText>
+		<Row Tag="LOC_OPTIONS_CHEATMENU_TITLE" Language="zh_Hans_CN">
+			<Text>修改器面板：</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_FAITH" Language="zh_Hans_CN">
+			<Text>+1000 信仰</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_GOLD" Language="zh_Hans_CN">
+			<Text>+1000 金币</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_GOLDMORE" Language="zh_Hans_CN">
+			<Text>+10w 金币</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_PRODUCTION" Language="zh_Hans_CN">
+			<Text>完成建造</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_CIVIC" Language="zh_Hans_CN">
+			<Text>完成市政研究</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_TECH" Language="zh_Hans_CN">
+			<Text>完成科技研究</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_ENVOY" Language="zh_Hans_CN">
+			<Text>+5 使者</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_ERA" Language="zh_Hans_CN">
+			<Text>+10 时代得分</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_OBS" Language="zh_Hans_CN">
+			<Text>开/关打开全图</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_MENU" Language="zh_Hans_CN">
+			<Text>显示/隐藏修改器面板</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_MOV" Language="zh_Hans_CN">
+			<Text>恢复移动力+攻击力</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_5MOV" Language="zh_Hans_CN">
+			<Text>+5 移动力</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_HP" Language="zh_Hans_CN">
+			<Text>恢复单位生命值</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_XP" Language="zh_Hans_CN">
+			<Text>升级单位</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_DUPE" Language="zh_Hans_CN">
+			<Text>复制单位</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_POP" Language="zh_Hans_CN">
+			<Text>增加人口</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_LOYALTY" Language="zh_Hans_CN">
+			<Text>加忠诚度</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_ALL_TECH" Language="zh_Hans_CN">
+			<Text>完成所有科技研究</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_ALL_CIVIC" Language="zh_Hans_CN">
+			<Text>完成所有市政研究</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_GOVPOINTS" Language="zh_Hans_CN">
+			<Text>+1 总督点数</Text>
+		</Row>
+		<Row Tag="LOC_OPTIONS_DIPLOMATIC_FAVOR" Language="zh_Hans_CN">
+			<Text>+100 外交支持</Text>
+		</Row>
+	</LocalizedText>
+</GameData>

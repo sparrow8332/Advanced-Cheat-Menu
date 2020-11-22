@@ -4,7 +4,7 @@
 <!-- DateCreated: 01/24/2019 4:27:04 AM -->
 <GameInfo>
 	<InputCategories>
-		<Row CategoryId="CHEATMENU" Name="Cheat Menu - Key Bindings" Visible="1" SortIndex="0" />
+		<Row CategoryId="CHEATMENU" Name="LOC_OPTIONS_CHEATMENU_TITLE" Visible="1" SortIndex="0" />
 	</InputCategories>
 	
 	<InputActions>	

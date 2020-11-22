@@ -142,10 +142,10 @@
 						<GridButton 	ID="CheatButtonAllCivic" Size="78,34" Style="TabButton"  Anchor="C,C" Offset="0,15" FontSize="14" TextOffset="0,2" String="LOC_CHEAT_MENU_AllCIVIC">
 							<GridButton	ID="CheatButtonAllCivic" Size="parent,parent" Style="TabButton" ConsumeMouseButton="1" ConsumeMouseOver="1" ToolTip="LOC_CHEAT_MENU_AllCIVIC_TOOLTIP"/>
 						</GridButton>
-						<Button 		ID="CheatSpawnBuilder" Offset="0,16" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="">
+						<Button 		ID="CheatSpawnBuilder" Offset="0,16" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_Builder_TOOLTIP">
 							<Image 		ID="CheatSpawnBuilderimg" Icon="ICON_UNIT_BUILDER" Size="27,27" Anchor="C,C" Offset="-1,-1" />
 						</Button>	
-						<Button 		ID="CheatSpawnSettler" Offset="0,16" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="">
+						<Button 		ID="CheatSpawnSettler" Offset="0,16" Texture="LaunchBar_Hook_ButtonSmall.dds" Style="ButtonDisabledText" Size="40,40" Anchor="C,C" ToolTip="LOC_CHEAT_MENU_Settler_TOOLTIP">
 							<Image 		ID="CheatSpawnSettlerimg" Icon="ICON_UNIT_SETTLER" Size="27,27" Anchor="C,C" Offset="-1,-1" />
 						</Button>	
 						<GridButton 	ID="CheatButtonAllTech" Size="78,34" Style="TabButton" Anchor="C,C" Offset="0,15" FontSize="14" TextOffset="0,2" String="LOC_CHEAT_MENU_AllTECH">
@@ -178,6 +178,6 @@
         </Box>
 	</Grid>
 	<Container ID="CheatPanelStack"  Size="auto,auto" Anchor="R,T">
-		<CheckBox ID="ToggleCheatPanel" Anchor="R,T" Offset="0,22" Style="WorldTrackerCheckBox" TextOffset="-5" String="Cheat Panel" WrapWidth="180" Align="Right"Hidden="0" />
+		<CheckBox ID="ToggleCheatPanel" Anchor="R,T" Offset="0,22" Style="WorldTrackerCheckBox" TextOffset="-5" String="LOC_CHEAT_MENU_PANEL" WrapWidth="180" Align="Right"Hidden="0" />
 	</Container>
 </Context>
