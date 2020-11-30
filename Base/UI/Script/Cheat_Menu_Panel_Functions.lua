@@ -302,7 +302,7 @@ function OnInputActionTriggered( actionId )
 		UnitPromote();
 	end
 	if ( actionId == Input.GetActionId("ToggleDuplicate") ) then
-		OnDuplicateUnit();
+		OnDuplicate();
 	end
 	if ( actionId == Input.GetActionId("ToggleChangePopulation") ) then
 		ChangePopulation();
@@ -317,7 +317,7 @@ function OnInputActionTriggered( actionId )
 		CompleteAllCivic();
 	end
 	if ( actionId == Input.GetActionId("ToggleMenu") ) then
-		OnMenuButtonToggle();
+		OnPanelTitleClicked();
 	end
 	if ( actionId == Input.GetActionId("ToggleDiplomaticFavor") ) then
 		ChangeDiplomaticFavor();

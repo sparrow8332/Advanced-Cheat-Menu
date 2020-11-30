@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Mod id="4ce8a818-31e6-4413-a6e6-cf39c0cb58d2" version="1.0">
 	<Properties>
-		<Name>Advanced [COLOR_Civ6Yellow]Cheat Menu[ENDCOLOR] [ICON_Capital]</Name>
+		<Name>LOC_MOD_ADVANCED_CHEAT_MENU_NAME</Name>
 		<Description>LOC_MOD_ADVANCED_CHEAT_MENU_DESCRIPTION</Description>
 		<Teaser>LOC_MOD_ADVANCED_CHEAT_MENU_TEASER</Teaser>
 		<Authors>Sparrow</Authors>
@@ -20,23 +20,27 @@
 	</ActionCriteria>
 	<References>
 		<Mod id="f1e02dd3-6a94-47c4-a2d7-1d5219d8a40e" title="Basic [COLOR_Civ6Yellow]Cheat Menu[ENDCOLOR] [ICON_Capital]" />
-	</References>		
+	</References>
 	<Dependencies>
 		<Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Expansion: Rise and Fall" />
 		<Mod id="4873eb62-8ccc-4574-b784-dda455e74e68" title="Expansion: Gathering Storm" />	
 	</Dependencies>
 	<LocalizedText>
+		<Text id="LOC_MOD_ADVANCED_CHEAT_MENU_NAME">
+			<en_US>Advanced [COLOR_Civ6Yellow]Cheat Menu[ENDCOLOR] [ICON_Capital]</en_US>
+			<zh_Hans_CN>[COLOR_Civ6Yellow]修改器面板[ENDCOLOR] 高级版 [ICON_Capital]</zh_Hans_CN>
+		</Text>
 		<Text id="LOC_MOD_ADVANCED_CHEAT_MENU_DESCRIPTION">
 			<en_US>Adds A Menu With Selected Cheat Options For InGame.[NEWLINE][NEWLINE][NEWLINE]Add +1000 [ICON_Faith][NEWLINE]Add +1000 [ICON_Gold][NEWLINE]Complete Production in Selected City[NEWLINE]Complete Current Reaserching Civic[NEWLINE]Complete Current Reaserching Tech[NEWLINE]Add +5 Envoy[NEWLINE]Add +10 Era Points[NEWLINE]Add +1 Governor Title Point[NEWLINE]Restore Selected Unit Movement + Attack[NEWLINE]Restore Selected Unit Health[NEWLINE]Give +1 Promotion to Selected Unit[NEWLINE]Add +5  Movement to Selected Unit[NEWLINE]Duplicate Selected Unit (NOT for Great Persons and Religious Units)[NEWLINE]Add +1 Population to Selected City[NEWLINE]Add FULL Loyalty to Selected City [NEWLINE]Complete All Tech Research[NEWLINE]Complete All Civic Research[NEWLINE]Raze Selected City[NEWLINE]Toggle Map Observer</en_US>
 			<it_IT>Aggiunge un menu con le opzioni cheat selezionate per InGame.[NEWLINE][NEWLINE][NEWLINE]Add +1000 [ICON_Faith][NEWLINE]Add +1000 [ICON_Gold][NEWLINE]Complete Production in Selected City[NEWLINE]Complete Current Reaserching Civic[NEWLINE]Complete Current Reaserching Tech[NEWLINE]Add +5 Envoy[NEWLINE]Add +10 Era Points[NEWLINE]Add +1 Governor Title Point[NEWLINE]Restore Selected Unit Movement + Attack[NEWLINE]Restore Selected Unit Health[NEWLINE]Give +1 Promotion to Selected Unit[NEWLINE]Add +5  Movement to Selected Unit[NEWLINE]Duplicate Selected Unit (NOT for Great Persons and Religious Units)[NEWLINE]Add +1 Population to Selected City[NEWLINE]Add FULL Loyalty to Selected City [NEWLINE]Complete All Tech Research[NEWLINE]Complete All Civic Research[NEWLINE]Raze Selected City[NEWLINE]Toggle Map Observer</it_IT>
 			<ja_JP>ゲーム内にチートオプションを選択するメニューを追加します。[NEWLINE][NEWLINE][NEWLINE]信仰を追加 +1000 [ICON_Faith][NEWLINE]ゴールドを追加 +1000 [ICON_Gold][NEWLINE]選択中の都市の生産完了[NEWLINE]社会制度完了[NEWLINE]研究完了[NEWLINE]代表団を追加 +5[NEWLINE]時代スコアを加算 +10[NEWLINE]総督の称号を追加 +1[NEWLINE]選択中のユニットを行動可能にします[NEWLINE]選択中のユニットの体力を回復[NEWLINE]選択中のユニットをレベルアップ +1[NEWLINE]選択中のユニットの移動力を追加 +5[NEWLINE]選択中のユニットを複製 (偉人や宗教ユニットを除く)[NEWLINE]選択中の都市の人口を追加 +1[NEWLINE]選択中の都市の忠誠心を追加[NEWLINE]全ての研究完了[NEWLINE]全ての社会制度完了[NEWLINE]選択中の都市を完全に破壊[NEWLINE]「戦場の霧」の表示切り替え</ja_JP>
-			<zh_Hans_CN>为InGame添加带有选定作弊选项的菜单.[NEWLINE][NEWLINE][NEWLINE]Add +1000 [ICON_Faith][NEWLINE]Add +1000 [ICON_Gold][NEWLINE]Complete Production in Selected City[NEWLINE]Complete Current Reaserching Civic[NEWLINE]Complete Current Reaserching Tech[NEWLINE]Add +5 Envoy[NEWLINE]Add +10 Era Points[NEWLINE]Add +1 Governor Title Point[NEWLINE]Restore Selected Unit Movement + Attack[NEWLINE]Restore Selected Unit Health[NEWLINE]Give +1 Promotion to Selected Unit[NEWLINE]Add +5  Movement to Selected Unit[NEWLINE]Duplicate Selected Unit (NOT for Great Persons and Religious Units)[NEWLINE]Add +1 Population to Selected City[NEWLINE]Add FULL Loyalty to Selected City [NEWLINE]Complete All Tech Research[NEWLINE]Complete All Civic Research[NEWLINE]Raze Selected City[NEWLINE]Toggle Map Observer</zh_Hans_CN>
+			<zh_Hans_CN>添加一个游戏内的修改器面板。[NEWLINE][NEWLINE][NEWLINE]+1000 [ICON_Faith][NEWLINE]+1000 [ICON_Gold][NEWLINE]完成选定城市的建造[NEWLINE]完成当前市政研究 [ICON_Culture][NEWLINE]完成当前科技研究 [ICON_Science][NEWLINE]+5 使者[NEWLINE]+10 时代得分[NEWLINE]+1 总督点数[NEWLINE]恢复移动力+攻击力[NEWLINE]恢复单位生命值[NEWLINE]所选单位升 1 级[NEWLINE]所选单位 +5 移动力[NEWLINE]复制所选的单位（不适用于伟人和宗教单位）[NEWLINE]所选城市 +1 人口[NEWLINE]所选城市 +100 忠诚度[NEWLINE]完成所有科技研究 [ICON_Science][NEWLINE]完成所有市政研究 [ICON_Culture][NEWLINE]摧毁所选城市[NEWLINE]开/关打开全图</zh_Hans_CN>
 		</Text>
 		<Text id="LOC_MOD_ADVANCED_CHEAT_MENU_TEASER">
 			<en_US>Adds A Menu With Selected Cheat Options For InGame.</en_US>
 			<it_IT>Aggiunge un menu con le opzioni cheat selezionate per InGame.</it_IT>
 			<ja_JP>ゲーム内にチートオプションを選択するメニューを追加します</ja_JP>
-			<zh_Hans_CN>为InGame添加带有选定作弊选项的菜单.</zh_Hans_CN>
+			<zh_Hans_CN>添加一个游戏内的修改器面板。</zh_Hans_CN>
 		</Text>
 	</LocalizedText>
 	<FrontEndActions>
@@ -45,6 +49,7 @@
 		</UpdateDatabase>
 		<UpdateText id="CheatPanel_Text_FrontEnd">
 			<File>Base/UI/Text/Options_Text.xml</File>
+			<File>Base/UI/Text/zh_Hans_CN/Options_Text.xml</File>
 		</UpdateText>
 	</FrontEndActions>
   	<InGameActions>
@@ -77,6 +82,7 @@
 		</ImportFiles>
 		<UpdateText id="CheatPanel_Text">
 			<File>Base/UI/Text/Options_Text.xml</File>
+			<File>Base/UI/Text/zh_Hans_CN/Options_Text.xml</File>
 			<File>Base/UI/Text/Localisation.sql</File>
 		</UpdateText>
 	</InGameActions>
@@ -88,6 +94,7 @@
 		<File>Base/UI/Cheat_Panel.lua</File>
 		<File>Base/UI/Script/Cheat_Menu_Panel_Functions.lua</File>	
 		<File>Base/UI/Text/Options_Text.xml</File>
+		<File>Base/UI/Text/zh_Hans_CN/Options_Text.xml</File>
 		<File>Base/UI/Text/Localisation.sql</File>
 		<File>Base/UI/Text/Input_Config.xml</File>
     </Files>

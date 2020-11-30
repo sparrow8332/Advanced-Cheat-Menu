@@ -174,8 +174,8 @@ function Initialize()
 	Events.InputActionTriggered.Add( OnInputActionTriggered );
 	ContextPtr:SetInputHandler( OnInputHandler, true );
 	InitializeControls();
-	IsExpansion2Active();
-	IsExpansion1Active();
+	IsGatheringStormActive();
+	IsRiseAndFallActive();
 	
 	IsLoading = true;
 		Events.LoadGameViewStateDone.Add(OnLoadGameViewStateDone);

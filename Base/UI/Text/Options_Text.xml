@@ -4,7 +4,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <GameData>
-	<LocalizedText>	
+	<LocalizedText>
+		<Row Tag="LOC_OPTIONS_CHEATMENU_TITLE" Language="en_US">
+			<Text>Cheat Menu - Key Bindings</Text>
+		</Row>
 		<Row Tag="LOC_OPTIONS_FAITH" Language="en_US">
 			<Text>Add +1000 Faith</Text>
 		</Row>

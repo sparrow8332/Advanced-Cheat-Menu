@@ -114,7 +114,7 @@ end
 function FreeBuilder(playerID, pCity)
 	local pPlayer = Players[playerID]
 	local DupeUnit = nil;
-	local iBuilder = GameInfo.Units["UNIT_BUILDER"].Index
+	local iBuilder = GameInfo.Units["UNIT_BUILDER"].UnitType
 	if iPlayer == playerID then
 		local pCity = pPlayer:GetCities():FindID(iCity)	
 		if pCity ~= nil then
@@ -125,7 +125,7 @@ end
 function FreeSettler(playerID, pCity)
 	local pPlayer = Players[playerID]
 	local DupeUnit = nil;
-	local iSettler = GameInfo.Units["UNIT_SETTLER"].Index
+	local iSettler = GameInfo.Units["UNIT_SETTLER"].UnitType
 	if iPlayer == playerID then
 		local pCity = pPlayer:GetCities():FindID(iCity)	
 		if pCity ~= nil then
